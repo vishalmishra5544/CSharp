@@ -31,6 +31,11 @@ namespace PracticePrograms
         public static void ArrayPrograms() 
         {
             int[] array = new int[5] { 11,2,3,14,5};
+            /*
+            int[] array2 = new int[7]{ 1,2,3,4 };// not valid
+            int[] array3 = new int[5];
+            array3 = {1} //not valid
+            */
             array[0] = 1;            
             Array.Sort(array);
             Array.Reverse(array);

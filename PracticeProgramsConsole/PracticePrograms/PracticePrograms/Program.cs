@@ -6,8 +6,39 @@ using PracticePrograms;
 //var result = BirthdayCakeCandles(new List<int> { 3, 2, 1, 3 });
 
 //AllDataStructures.ArrayPrograms();
-AllDataStructures.ListPrograms();
+//AllDataStructures.ListPrograms();
+//Console.WriteLine(IsPowerofTwo(61));
+Console.WriteLine(DoUnion(new int[5]{1,2,4,3,0 },5,new int[4] {6,7,3,1},4));
 Console.ReadKey();
+
+static bool IsPowerofTwo(long n)
+{
+    // Your code here
+    /* int noOfSetBits = 0;
+     long temp = n;
+     int length =(int)Math.Floor(Math.Log2(n) + 1);
+     while (noOfSetBits < 2 && length > 0)
+     {
+         if ((temp & 1) == 1)
+         {
+             noOfSetBits++;
+         }
+         temp = temp >> 1;
+         length--;
+     }
+     return noOfSetBits == 1;*/
+    return (n > 0) && ((n & (n - 1))==0);
+}
+static int DoUnion(int[] a, int n, int[] b, int m)
+{
+    HashSet<int> h = new HashSet<int>(n + m);
+    foreach (int ele in a)
+        h.Add(ele);
+    foreach (int ele in b)
+        h.Add(ele);
+    return h.Count;
+
+}
 static List<long> GetMinMax(List<long> a, int n)
 {
     //return new List<long>(){a.Min(),a.Max()};
