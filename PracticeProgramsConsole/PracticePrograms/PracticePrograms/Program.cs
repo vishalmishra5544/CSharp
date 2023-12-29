@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PracticePrograms;
+using System.Text;
 
 
 //var result = GetMinMax(new List<long>() { 3, 2 ,1, 56 ,1000, 167 },6);
@@ -8,7 +9,8 @@ using PracticePrograms;
 //AllDataStructures.ArrayPrograms();
 //AllDataStructures.ListPrograms();
 //Console.WriteLine(IsPowerofTwo(61));
-Console.WriteLine(DoUnion(new int[5]{1,2,4,3,0 },5,new int[4] {6,7,3,1},4));
+//Console.WriteLine(DoUnion(new int[5]{1,2,4,3,0 },5,new int[4] {6,7,3,1},4));
+Console.WriteLine(ReverseWord("abcde"));
 Console.ReadKey();
 
 static bool IsPowerofTwo(long n)
@@ -68,4 +70,45 @@ static int BirthdayCakeCandles(List<int> candles)
         }
     }
     return dict.Last().Value;
+}
+
+static string ReverseWord(string str)
+{
+    /*var charList = str.ToCharArray();
+    int l = 0, r = str.Length - 1;
+    while(l<r)
+    {
+        charList[l] = (char)((int) charList[l] ^ (int) charList[r]);
+        charList[r] = (char)((int) charList[l] ^ (int) charList[r]);
+        charList[l] = (char)((int) charList[l] ^ (int) charList[r]);
+        l++;r--;
+    }
+    return new string(charList);*/
+    StringBuilder rev = new StringBuilder();
+    for (int i = str.Length - 1; i >= 0; i--)
+        rev.Append(str[i]);
+    return rev.ToString();
+}
+static bool Check(List<long> A, List<long> B, int N)
+{
+    //Your code here    
+    Dictionary<long, long> h = new Dictionary<long, long>();
+    foreach (long ele in A)
+    {
+        if (h.ContainsKey(ele))
+        {
+            h[ele] += 1;
+        }
+        else
+            h.Add(ele, 1);
+    }
+    foreach (long ele in B)
+    {
+        if (!h.ContainsKey(ele))
+            return false;
+        h[ele] -= 1;
+        if (h[ele] == 0)
+            h.Remove(ele);
+    }
+    return true;
 }
