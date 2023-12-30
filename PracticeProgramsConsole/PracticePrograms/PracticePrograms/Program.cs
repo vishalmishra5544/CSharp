@@ -10,7 +10,8 @@ using System.Text;
 //AllDataStructures.ListPrograms();
 //Console.WriteLine(IsPowerofTwo(61));
 //Console.WriteLine(DoUnion(new int[5]{1,2,4,3,0 },5,new int[4] {6,7,3,1},4));
-Console.WriteLine(ReverseWord("abcde"));
+//Console.WriteLine(ReverseWord("abcde"));
+ReverseInGroups(new List<long> { 1,2,3,4,5}, 5, 3);
 Console.ReadKey();
 
 static bool IsPowerofTwo(long n)
@@ -111,4 +112,49 @@ static bool Check(List<long> A, List<long> B, int N)
             h.Remove(ele);
     }
     return true;
+}
+static void ReverseInGroups(List<long> arr, int n, int k)
+{    
+    for(int i=0;i<n;i+=k)
+    {
+        Reverse(arr,i,k);
+    }
+}
+static void Reverse(List<long> arr, int start,int k)
+{
+    int end = (start + k-1) > arr.Count-1?arr.Count-1:start+k-1;
+    while (start < end)
+    {
+        arr[start] = arr[start] ^ arr[end];
+        arr[end] = arr[start] ^ arr[end];
+        arr[start] = arr[start] ^ arr[end];
+        start++;
+        end--;
+    }
+}
+static string IsSubset(int[] a1, int[] a2, int n, int m)
+{
+    //Your code here
+    if (m > n)
+    {
+        return "No";
+    }
+    Dictionary<int, int> d = new Dictionary<int, int>(n);
+    foreach (var ele in a1)
+    {
+        if (d.ContainsKey(ele))
+            d[ele] += 1;
+        else
+            d.Add(ele, 1);
+    }
+
+    foreach (var ele in a2)
+    {
+        if (!d.ContainsKey(ele))
+            return "No";
+        d[ele]--;
+        if (d[ele] == 0)
+            d.Remove(ele);
+    }
+    return "Yes";
 }
