@@ -99,7 +99,10 @@ namespace PracticePrograms
         static void HeapPrograms() { }
         static void HashSetPrograms() { }
         static void SortedSetPrograms() { }
-        static void DictionaryPrograms() { }
+        static void DictionaryPrograms() 
+        {
+           Dictionary<int,int> d = new Dictionary<int,int>(5);
+        }
         static void SortedDictionaryPrograms() { }
         static void BitsetPrograms() { }
 
