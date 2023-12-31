@@ -13,17 +13,77 @@ namespace PracticePrograms
             return x.CompareTo(y);
         }
     }
-    public class Employee
+    public interface IPerson
+    {
+        string Name { get; set; }
+        string Gender { get; set; }
+    }
+    public class Employee : IPerson
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public long Salary { get; set; }
+        public DayOfWeek ShiftDay { get; set; }
+        public string Name { get ; set ; }
+       
+        // public string Gender { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }  via show potential fixes
+        public string Gender { get; set; } 
+
         public Employee() { }
         public Employee(int id,string name,long salary)
         {
             Id = id;
             Name = name;
             Salary = salary;
+        }
+    }
+    public class Manager : Employee
+    {
+        public Manager()
+        {
+                
+        }
+        public Manager(string level="B")
+        {
+            Level = level;
+        }
+        public int ExperienceInYears { get; set; }
+        public string Level { get; set; }
+        int DoRandomWork()
+        {
+            Random random = new Random();
+            return random.Next(1, 100);
+        }
+    }
+    
+    //[Flags]
+    public enum DayOfWeek : short
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday
+    }
+    internal static class OOPS
+    {
+        public static void OOPSPrograms()
+        {
+            Employee emp = new Employee();
+            Manager manager = new Manager();
+            Manager manager1 = new Manager("A");
+            //Manager manager2 = emp; // Not valid
+            //Manager manager2 = (Manager)emp; //Gives Error
+            emp = manager;
+            Console.WriteLine(true.ToString());
+            Console.WriteLine(DayOfWeek.Friday);
+            IPerson person = new Employee();
+            IPerson person2 = new Manager();
+            person = new Manager();
+            person = person2;
+            manager = (Manager)person;
+            emp = (Employee)person;
         }
     }
     internal static class AllDataStructures

@@ -11,7 +11,10 @@ using System.Text;
 //Console.WriteLine(IsPowerofTwo(61));
 //Console.WriteLine(DoUnion(new int[5]{1,2,4,3,0 },5,new int[4] {6,7,3,1},4));
 //Console.WriteLine(ReverseWord("abcde"));
-ReverseInGroups(new List<long> { 1,2,3,4,5}, 5, 3);
+//ReverseInGroups(new List<long> { 1,2,3,4,5}, 5, 3);
+//Console.WriteLine(IsPossible(4,new int[4] { 18 ,1, 16, 17 }));
+Rotate(new int[5] { 1, 2, 3, 4, 5 }, 1);
+//OOPS.OOPSPrograms();
 Console.ReadKey();
 
 static bool IsPowerofTwo(long n)
@@ -157,4 +160,81 @@ static string IsSubset(int[] a1, int[] a2, int n, int m)
             d.Remove(ele);
     }
     return "Yes";
+}
+
+static bool IsPossible(int N, int[] coins)
+{
+    // code here
+    //return Recursion(coins,0,0,N);
+    int[,] dp = new int[N+1, 2025];
+    for (int i = 0; i < N+1; i++)
+    {
+        for (int j = 0; j < 2025; j++)
+        {
+            dp[i, j] = -1;
+        }
+    }
+    int possible = Memoization(coins, 0, 0, N, dp);
+
+    if (possible == 1)
+        return true;
+    else
+        return false;
+}
+
+static bool Recursion(int[] coins, int currInd, int sum, int N)
+{
+    if (sum != 0 && (sum == 2024 || sum % 20 == 0 || sum % 24 == 0))
+    {
+        return true;
+    }
+    if (currInd == N)
+    {
+        return false;
+    }
+    bool take = Recursion(coins, currInd + 1, sum + coins[currInd], N);
+    if (take)
+        return take;
+    bool noTake = Recursion(coins, currInd, sum, N);
+    if (noTake)
+        return noTake;
+    return false;
+}
+
+static int Memoization(int[] coins, int currInd, int sum, int N, int[,] dp)
+{
+    if (sum > 0 && (sum == 2024 || sum % 20 == 0 || sum % 24 == 0))
+    {
+        return dp[currInd, sum] = 1;
+    }
+    if (currInd >= N)
+    {
+        return dp[currInd, sum] = 0;
+    }
+    if (dp[currInd, sum] != -1)
+        return dp[currInd, sum];
+    int noTake = Memoization(coins, currInd+1, sum, N, dp);
+    if (noTake == 1)
+        return dp[currInd, sum] = 1;
+    int take = Memoization(coins, currInd + 1, sum + coins[currInd], N, dp);
+    if (take == 1)
+        return dp[currInd, sum] = 1;    
+    return dp[currInd, sum] = 0;
+}
+static void Rotate(int[] arr, int k)
+{
+    ReverseArr(arr, 0, k - 1);
+    ReverseArr(arr, k, arr.Length - 1);
+    ReverseArr(arr, 0, arr.Length - 1);
+}
+static void ReverseArr(int[] arr, int start, int end)
+{
+    while (start < end)
+    {
+        arr[start] = arr[start] ^ arr[end];
+        arr[end] = arr[start] ^ arr[end];
+        arr[start] = arr[start] ^ arr[end];
+        start++;
+        end--;
+    }
 }
