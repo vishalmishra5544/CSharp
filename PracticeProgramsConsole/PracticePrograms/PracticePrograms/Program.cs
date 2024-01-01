@@ -238,3 +238,19 @@ static void ReverseArr(int[] arr, int start, int end)
         end--;
     }
 }
+//Complete this function
+static int largest(List<int> arr, int n)
+{
+    int maxi = int.MinValue;
+    for (int i = 0; i < arr.Count; i++)
+    {
+        maxi = max(maxi, arr[i]);
+    }
+    return maxi;
+}
+static int max(int a, int b)
+{
+    if (a >= b)
+        return a;
+    return b;
+}
