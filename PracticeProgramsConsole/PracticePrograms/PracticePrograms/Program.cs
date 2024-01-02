@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PracticePrograms;
 using System.Text;
+using System.Xml.Linq;
 
 
 //var result = GetMinMax(new List<long>() { 3, 2 ,1, 56 ,1000, 167 },6);
@@ -13,7 +14,9 @@ using System.Text;
 //Console.WriteLine(ReverseWord("abcde"));
 //ReverseInGroups(new List<long> { 1,2,3,4,5}, 5, 3);
 //Console.WriteLine(IsPossible(4,new int[4] { 18 ,1, 16, 17 }));
-Rotate(new int[5] { 1, 2, 3, 4, 5 }, 1);
+//Rotate(new int[5] { 1, 2, 3, 4, 5 }, 1);
+insertAtBeginning(new Node(4),5);
+insertAtEnd(new Node(4),5);
 //OOPS.OOPSPrograms();
 Console.ReadKey();
 
@@ -253,4 +256,49 @@ static int max(int a, int b)
     if (a >= b)
         return a;
     return b;
+}
+
+static int isPrime(int N)
+{
+    //Your code here
+    if (N == 1)
+        return 0;
+    if (N == 2 || N == 3)
+        return 1;
+    if (N % 2 == 0 || N % 3 == 0)
+        return 0;
+    for (int i = 5; i <= Math.Sqrt(N); i += 6)
+    {
+        if (N % i == 0 || N % (i + 2) == 0)
+            return 0;
+    }
+    return 1;
+}
+
+
+static Node insertAtBeginning(Node head, int x)
+{
+    //Your code here
+    Node newNode = new Node(x);
+    newNode.next = head;
+    head = newNode;
+    return head;
+}
+
+static Node insertAtEnd(Node head, int x)
+{
+    //Your code here
+    Node newNode = new Node(x);
+    if (head == null)
+    {
+        head = newNode;
+        return head;
+    }
+    Node t = head;
+    while (t != null && t.next != null)
+    {
+        t = t.next;
+    }
+    t.next = newNode;
+    return head;
 }
