@@ -15,8 +15,9 @@ using System.Xml.Linq;
 //ReverseInGroups(new List<long> { 1,2,3,4,5}, 5, 3);
 //Console.WriteLine(IsPossible(4,new int[4] { 18 ,1, 16, 17 }));
 //Rotate(new int[5] { 1, 2, 3, 4, 5 }, 1);
-insertAtBeginning(new Node(4),5);
-insertAtEnd(new Node(4),5);
+//insertAtBeginning(new Node(4),5);
+//insertAtEnd(new Node(4),5);
+SearchInSorted(new int[5] { 1,2,3,4,5},5,6);
 //OOPS.OOPSPrograms();
 Console.ReadKey();
 
@@ -301,4 +302,43 @@ static Node insertAtEnd(Node head, int x)
     }
     t.next = newNode;
     return head;
+}
+
+static int SearchInSorted(int[] arr, int N, int K)
+{
+    //Your code here
+    int low = 0, high = arr.Length - 1, mid;
+    while (low <= high)
+    {
+        mid = low + (high - low) / 2;
+        if (arr[mid] == K)
+            return 1;
+        else if (arr[mid] < K)
+        {
+            low = mid + 1;
+        }
+        else
+            high = mid - 1;
+    }
+    return 0;
+}
+static int firstElementKTime(int[] a, int n, int k)
+{
+    Dictionary<int, int> d = new Dictionary<int, int>(k);
+    foreach (var ele in a)
+    {
+        if (d.ContainsKey(ele))
+        {
+            d[ele] += 1;
+        }
+        else
+        {
+            d.Add(ele, 1);
+        }
+        if (d[ele] == k)
+        {
+            return ele;
+        }
+    }
+    return -1;
 }
