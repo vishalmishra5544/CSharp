@@ -154,6 +154,10 @@ namespace PracticePrograms
                 Console.Write(ele+" ");
             }
         }
+        static void LinkedListPrograms()
+        {
+
+        }
         static void StackPrograms() { }
         static void QueuePrograms() { }
         static void HeapPrograms() { }
