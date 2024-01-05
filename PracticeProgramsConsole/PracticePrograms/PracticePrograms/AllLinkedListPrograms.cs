@@ -20,5 +20,19 @@ namespace PracticePrograms
             }
             return count;
         }
+        public bool isCircular(Node head)
+        {
+            //Your code here
+            if (head == null)
+                return true;
+            Node t = head;
+            while (t != null && t.next != head)
+            {
+                if (t.next == null)
+                    return false;
+                t = t.next;
+            }
+            return true;
+        }
     }
 }
