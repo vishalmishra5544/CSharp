@@ -102,8 +102,12 @@ namespace PracticePrograms
             Array.Sort(array,new NumberComparer());
             int[] tempArray=new int[5];
             Array.Copy(array, tempArray, array.Length-3);
-           // Array.Copy(array, tempArray, array.Length);
-            foreach(int x in tempArray)
+            // Array.Copy(array, tempArray, array.Length);
+            string s = "1 2 3 4 5 6";
+            var stringArray = s.Split(' ');
+            int[] arr = new int[stringArray.Length];
+            arr = Array.ConvertAll(stringArray, int.Parse);
+            foreach(int x in arr)
             {
                 Console.Write(x+" ");
             }
