@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PracticePrograms
 {
-    class MyQueue
+    class QueueUsingArray
     {
         //Your code here
         private int[] arr;
         private int front;
         private int rear;
 
-        public MyQueue()
+        public QueueUsingArray()
         {
             arr = new int[100005];
             front = 0;
