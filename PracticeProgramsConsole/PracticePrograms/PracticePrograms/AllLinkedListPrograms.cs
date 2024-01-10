@@ -61,6 +61,23 @@ namespace PracticePrograms
             }
             return true;
         }
+        public bool IsIdentical(Node head1, Node head2)
+        {
+            //write your code here 
+            if ((head1 == null && head2 != null) || (head2 == null && head1 != null))
+                return false;
+            Node h1 = head1, h2 = head2;
+            while (h1 != null && h2 != null)
+            {
+                if (h1.data != h2.data)
+                    return false;
+                h1 = h1.next;
+                h2 = h2.next;
+            }
+            if ((h1 == null && h2 != null) || (h1 != null && h2 == null))
+                return false;
+            return true;
+        }
 
     }
 }
