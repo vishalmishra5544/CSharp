@@ -39,5 +39,26 @@ namespace PracticePrograms
     }
     internal class AllQueuePrograms
     {
+        //Function to reverse first k elements of a queue.
+        public Queue<int> modifyQueue(Queue<int> q, int k)
+        {
+            // add code here.
+            Stack<int> st = new Stack<int>();
+            for (int i = 0; i < k; i++)
+            {
+                st.Push(q.Dequeue());
+            }
+            int s = q.Count();
+            for (int i = 0; i < k; i++)
+            {
+                q.Enqueue(st.Pop());
+            }
+            while (s-- > 0)
+            {
+                int curr = q.Dequeue();
+                q.Enqueue(curr);
+            }
+            return q;
+        }
     }
 }
