@@ -25,5 +25,24 @@ namespace PracticePrograms
             HelperPostOrder(root.right, ans);
             ans.Add(root.data);
         }
+
+        //Complete this function
+        public int countLeaves(Node root)
+        {
+            //Your code here
+            int ans = 0;
+            HelperPreOrder(root, ref ans);
+            return ans;
+        }
+
+        private void HelperPreOrder(Node root, ref int ans)
+        {
+            if (root == null)
+                return;
+            if (root.left == null && root.right == null)
+                ans++;
+            HelperPreOrder(root.left, ref ans);
+            HelperPreOrder(root.right, ref ans);
+        }
     }
 }
