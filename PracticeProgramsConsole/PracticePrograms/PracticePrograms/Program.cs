@@ -19,7 +19,13 @@ using System.Xml.Linq;
 //insertAtEnd(new Node(4),5);
 //SearchInSorted(new int[5] { 1,2,3,4,5},5,6);
 //OOPS.OOPSPrograms();
-AllDataStructures.ArrayPrograms();
+//AllDataStructures.ArrayPrograms();
+//AllPatternPrograms.SolidSquare(5,9);
+//AllPatternPrograms.HollowSquare(5,5);
+//AllPatternPrograms.LeftUpperTriangle(5,5);
+//AllPatternPrograms.LeftLowerTriangle(5,5);
+AllPatternPrograms.RightUpperTriangle(5,5);
+AllPatternPrograms.RightLowerTriangle(5,5);
 Console.ReadKey();
 
 
