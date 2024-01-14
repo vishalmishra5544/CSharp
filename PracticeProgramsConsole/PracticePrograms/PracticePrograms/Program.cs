@@ -24,8 +24,9 @@ using System.Xml.Linq;
 //AllPatternPrograms.HollowSquare(5,5);
 //AllPatternPrograms.LeftUpperTriangle(5,5);
 //AllPatternPrograms.LeftLowerTriangle(5,5);
-AllPatternPrograms.RightUpperTriangle(5,5);
-AllPatternPrograms.RightLowerTriangle(5,5);
+//AllPatternPrograms.RightUpperTriangle(5,5);
+//AllPatternPrograms.RightLowerTriangle(5,5);
+Console.WriteLine(AllExceptionHandlingPrograms.Ex1());
 Console.ReadKey();
 
 
