@@ -61,5 +61,30 @@ namespace PracticePrograms
                 return 1;
             return N * factorial(N - 1);
         }
+
+        public int thirdLargest(int[] a, int n)
+        {
+            //Your code here
+            int f = int.MinValue, s = int.MinValue, t = int.MinValue;
+            for (int i = 0; i < n; i++)
+            {
+                if (a[i] > f)
+                {
+                    t = s;
+                    s = f;
+                    f = a[i];
+                }
+                else if (a[i] > s)
+                {
+                    t = s;
+                    s = a[i];
+                }
+                else if (a[i] > t)
+                {
+                    t = a[i];
+                }
+            }
+            return t;
+        }
     }
 }
