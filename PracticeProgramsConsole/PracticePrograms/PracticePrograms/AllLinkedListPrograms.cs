@@ -78,6 +78,26 @@ namespace PracticePrograms
                 return false;
             return true;
         }
+        public static Node InsertInMiddleOfLinkedList(Node head,int x)
+        {
+            Node n;
+            if (head == null)
+            {
+                n = new Node(x);
+                head = n;
+                return head;
+            }
+            Node f = head, s = head;
+            while (f != null && f.next != null && f.next.next != null)
+            {
+                f = f.next.next;
+                s = s.next;
+            }
+            n = new Node(x);
+            n.next = s.next;
+            s.next = n;
+            return head;
+        }
 
     }
 }
