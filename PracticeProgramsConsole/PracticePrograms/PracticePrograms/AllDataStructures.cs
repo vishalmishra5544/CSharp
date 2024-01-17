@@ -96,7 +96,8 @@ namespace PracticePrograms
             int[] array3 = new int[5];
             array3 = {1} //not valid
             */
-            array[0] = 1;            
+            array[0] = 1;
+            var count = array.Count();
             Array.Sort(array);
             Array.Reverse(array);
             Array.Sort(array,new NumberComparer());
