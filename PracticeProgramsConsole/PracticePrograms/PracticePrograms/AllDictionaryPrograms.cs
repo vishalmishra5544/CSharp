@@ -68,5 +68,35 @@ namespace PracticePrograms
             }
             return -1;
         }
+
+        public static char getMaxOccuringChar(string str)
+        {
+            //Your code here
+            Dictionary<char, int> d = new Dictionary<char, int>();
+            foreach (var ele in str)
+            {
+                if (d.ContainsKey(ele))
+                    d[ele]++;
+                else
+                    d.Add(ele, 1);
+            }
+            int maxValue = int.MinValue;
+            char maxChar = 'z';
+            foreach (var ele in d)
+            {
+                if (ele.Value > maxValue)
+                {
+                    maxValue = ele.Value;
+                    maxChar = ele.Key;
+                }
+                else if(ele.Value == maxValue)
+                {
+                    maxValue = ele.Value;
+                    if (ele.Key < maxChar)
+                        maxChar = ele.Key;
+                }
+            }
+            return maxChar;
+        }
     }
 }

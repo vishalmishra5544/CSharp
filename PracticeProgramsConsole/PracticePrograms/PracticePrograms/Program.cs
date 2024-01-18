@@ -27,7 +27,8 @@ using System.Xml.Linq;
 //AllPatternPrograms.RightUpperTriangle(5,5);
 //AllPatternPrograms.RightLowerTriangle(5,5);
 //Console.WriteLine(AllExceptionHandlingPrograms.Ex1());
-AllExceptionHandlingPrograms.Ex3();
+Console.WriteLine(AllDictionaryPrograms.getMaxOccuringChar("orqxvbq"));
+//AllExceptionHandlingPrograms.Ex3();
 Console.ReadKey();
 
 
