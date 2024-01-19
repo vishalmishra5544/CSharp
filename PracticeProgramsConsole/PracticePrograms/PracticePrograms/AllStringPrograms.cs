@@ -25,5 +25,17 @@ namespace PracticePrograms
                 rev.Append(str[i]);
             return rev.ToString();
         }
+        public int lastIndex(string s)
+        {
+            // Your code here
+            //return s.LastIndexOf('1');
+            int lastIndex = -1;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '1')
+                    lastIndex = i;
+            }
+            return lastIndex;
+        }
     }
 }
