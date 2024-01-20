@@ -8,6 +8,18 @@ namespace PracticePrograms
 {
     internal class AllLinkedListPrograms
     {
+        public int GetNth(Node head, int index)
+        {
+            //Your code here
+            Node t = head;
+            int ind = index;
+            while (t != null && ind-- > 1)
+            {
+                t = t.next;
+            }
+
+            return t.data;
+        }
         static Node insertAtBeginning(Node head, int x)
         {
             //Your code here

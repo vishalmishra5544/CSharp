@@ -53,8 +53,7 @@ namespace PracticePrograms
             catch(Exception ex)
             {
 
-            }
-            
+            }            
         }
         public static void Ex3()
         {
@@ -99,6 +98,29 @@ namespace PracticePrograms
             catch (Exception ex)
             {
 
+            }
+        }
+
+        public static void Ex4()
+        {
+            try
+            {
+                // Rule : sign of numerator is chosen for sign of remainder.
+               Console.WriteLine("5 % -2  = "+(5 % -2));
+               Console.WriteLine("-5 % 2  = "+(-5 % 2));
+               Console.WriteLine("-5 % -2  = "+(-5 % -2));
+
+
+                Console.WriteLine("2 % -5  = " + (2 % -5));
+                Console.WriteLine("-2 % 5  = " + (-2 % 5));
+                Console.WriteLine("-2 % -5  = " + (-2 % -5));
+
+                Console.WriteLine("5 % -5  = " + (5 % -5));
+                Console.WriteLine("-5 % 5  = " + (-5 % 5));
+                Console.WriteLine("-5 % -5  = " + (-5 % -5));
+            }
+            catch 
+            {
             }
         }
     }
