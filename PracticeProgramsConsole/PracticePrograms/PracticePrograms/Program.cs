@@ -28,7 +28,10 @@ using System.Xml.Linq;
 //AllPatternPrograms.RightLowerTriangle(5,5);
 //Console.WriteLine(AllExceptionHandlingPrograms.Ex1());
 //Console.WriteLine(AllDictionaryPrograms.getMaxOccuringChar("orqxvbq"));
-AllExceptionHandlingPrograms.Ex4();
+//AllExceptionHandlingPrograms.Ex4();
+//AllDataStructures.ArrayPrograms();
+//AllDataStructures.ListPrograms();
+AllArraysPrograms.moveNegativeElementsInRight(new int[8] {1,-2,3,-4,5,6,-9 ,-8}, 8);
 Console.ReadKey();
 
 
