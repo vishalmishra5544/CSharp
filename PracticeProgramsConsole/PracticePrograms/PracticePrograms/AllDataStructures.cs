@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 
 namespace PracticePrograms
 {
+    
+    public static class StaticClass
+    {
+       // private int NormalVariable; // not allowed to have normal variable, need to be static
+        private static int StaticVariable;
+       /* private void Fun()  // same for fun , need to be static
+        {
+
+        }*/
+
+        private static void Fun()
+        {
+
+        }
+    }
     public class NumberComparer : IComparer<int>
     {
         public int Compare(int x, int y)
@@ -88,15 +103,22 @@ namespace PracticePrograms
     }
     internal static class AllDataStructures
     {
+        private static void Helper(int[,] array2D)  // can't put size of i,j values in left
+        {
+
+        }
+
         public static void ArrayPrograms() 
         {
             int[] array = new int[5] { 11,2,3,14,5};
             /*
-            int[] array2 = new int[7]{ 1,2,3,4 };// not valid
+            int[] array2 = new int[7]{ 1,2,3,4 };// not valid  ,in c++ it is allowed for static array 
             int[] array3 = new int[5];
             array3 = {1} //not valid
             */
             array[0] = 1;
+            int[,] array2D = new int[4,4]; // can't put size of i,j values in left
+            Helper(array2D);
             var count = array.Count();
             Array.Sort(array);
             Array.Reverse(array);
@@ -108,6 +130,7 @@ namespace PracticePrograms
             var stringArray = s.Split(' ');
             int[] arr = new int[stringArray.Length];
             arr = Array.ConvertAll(stringArray, int.Parse);
+            //arr = new int[2*(long)1e9];     ///max size of an array in c#
             foreach(int x in arr)
             {
                 Console.Write(x+" ");
@@ -115,9 +138,14 @@ namespace PracticePrograms
         }
         public static void ListPrograms() 
         {
+            List<string> l = new List<string>();
+            var defaultCapacity = l.Capacity;//default is 0.
             List<int> list = new List<int>() { 11,2,3,14,5};//count=5,capacity=8
             Console.WriteLine(list.Count+" "+list.Capacity);
-            list = new List<int>(7) { 11,3,2,14,5};//best
+            list = new List<int>(7) { 11,3,2,14,34};//best   //here size > no of initialized.
+            //list = new List<int>(10*(long)1e9); // takes int
+            //list = new List<int>((long)100); // not valid as constructor takes int
+            //list = new List<int>(2*(int)1e9); // max limit for integer literal value and hence size for list
             list.Add(11);
             list.Remove(2);
             list.RemoveRange(3, 1);
@@ -171,6 +199,10 @@ namespace PracticePrograms
         static void DictionaryPrograms() 
         {
            Dictionary<int,int> d = new Dictionary<int,int>(5);
+
+            Dictionary<int, string> dict = new Dictionary<int, string>();
+           // var defaultCapacity = dict.Count;// nothing here like capacity for dictionary
+
         }
         static void SortedDictionaryPrograms() { }
         static void BitsetPrograms() { }

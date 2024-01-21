@@ -44,5 +44,95 @@ namespace PracticePrograms
                 end--;
             }
         }
+        public static void sort012(int[] arr, int n)
+        {
+            int one = 0, two = n - 1, curr = 0;
+            while (curr <= two)
+            {
+                if (arr[curr] == 0)
+                {
+                    swap(arr, one, curr);
+                    one++;
+                    curr++;
+                }
+                else if (arr[curr] == 1)
+                {
+                    curr++;
+                }
+                else
+                {
+                    swap(arr, two, curr);
+                    two--;
+                }
+
+            }
+        }
+        private static void swap(int[] arr, int a, int b)
+        {
+            int temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+
+        }
+
+        public static void sort0and1(int[] arr, int n)
+        {
+            // code here
+
+            int one = n - 1, curr = 0;
+            while (curr <= one)
+            {
+                if (arr[curr] == 0)
+                {
+                    curr++;
+                }
+                else
+                {
+                    swap(arr, curr, one);
+                    one--;
+                }
+            }
+
+        }
+
+        public static void moveNegativeElementsInEnd(int[] arr, int n)
+        {
+            // code here
+
+            int end = n - 1, curr = 0;
+            while (curr <= end)
+            {
+                if (arr[curr] >= 0)
+                {
+                    curr++;
+                }
+                else
+                {
+                    swap(arr, curr, end);
+                    end--;
+                }
+            }
+
+        }
+
+        public static void moveNegativeElementsInRight(int[] arr, int n)// time:o(n)
+        {
+            // code here
+
+            int end = n - 1, curr = 0;
+            while (curr <= end)
+            {
+                if (arr[curr] < 0)
+                {
+                    curr++;
+                }
+                else
+                {
+                    swap(arr, curr, end);
+                    end--;
+                }
+            }
+
+        }
     }
-}
+ }
