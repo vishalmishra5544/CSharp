@@ -134,5 +134,28 @@ namespace PracticePrograms
             }
 
         }
+
+        //Function to find duplicates in an array.
+        public static List<int> duplicates(long[] arr, int n)
+        {
+            //Your code here
+            List<int> ans = new List<int>();
+            for (long i = 0; i < arr.Length; i++)
+            {
+                long index = arr[i] % n;
+                arr[index] += n;
+            }
+            for (long i = 0; i < arr.Length; i++)
+            {
+                long noOfTimesN = arr[i] / n;   
+                if (noOfTimesN >= 2)
+                    ans.Add((int)i);
+            }
+            if (ans.Count == 0)
+                ans.Add(-1);
+            else
+                ans.Sort();
+            return ans;
+        }
     }
  }
