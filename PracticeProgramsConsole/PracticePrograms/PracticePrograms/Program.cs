@@ -1,8 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PracticePrograms;
-using System.Text;
-using System.Xml.Linq;
-
+using PracticePrograms.CSharp;
 
 //var result = GetMinMax(new List<long>() { 3, 2 ,1, 56 ,1000, 167 },6);
 //var result = BirthdayCakeCandles(new List<int> { 3, 2, 1, 3 });

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PracticePrograms
+namespace PracticePrograms.CSharp
 {
     internal class AllHashSetPrograms
     {
