@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PracticePrograms;
 using PracticePrograms.CSharp;
+using PracticePrograms.DSA.CSharp;
 
 //var result = GetMinMax(new List<long>() { 3, 2 ,1, 56 ,1000, 167 },6);
 //var result = BirthdayCakeCandles(new List<int> { 3, 2, 1, 3 });
@@ -29,7 +30,11 @@ using PracticePrograms.CSharp;
 //AllExceptionHandlingPrograms.Ex4();
 //AllDataStructures.ArrayPrograms();
 //AllDataStructures.ListPrograms();
-AllArraysPrograms.moveNegativeElementsInRight(new int[8] {1,-2,3,-4,5,6,-9 ,-8}, 8);
+//AllArraysPrograms.moveNegativeElementsInRight(new int[8] {1,-2,3,-4,5,6,-9 ,-8}, 8);
+
+//var value =AllGreedyPrograms.fractionalKnapsack(50,new Item[3] { new Item(100,20),new Item(120,30),new Item(60, 10) },5);
+var value = AllArraysPrograms.leaders(new int[6] { 16, 17, 4, 3, 5, 2 }, 6);
+Console.WriteLine(value);
 Console.ReadKey();
 
 

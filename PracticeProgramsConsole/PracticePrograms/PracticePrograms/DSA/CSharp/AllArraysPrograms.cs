@@ -157,5 +157,39 @@ namespace PracticePrograms
                 ans.Sort();
             return ans;
         }
+
+        public static List<int> leaders(int[] a, int n)
+        {
+            //Your code here
+            List<int> ans = new List<int>();
+            int maxOnLeftTillNow = a[n - 1];
+            ans.Add(a[n - 1]);
+            // int[] maxOnLeft = new int[n];
+            // maxOnLeft[n-1]=-1;
+            // for(int i=n-2;i>=0;i--)
+            // {
+            //     maxOnLeft[i] = maxOnLeftTillNow;
+            //     if(maxOnLeftTillNow<a[i])
+            //       maxOnLeftTillNow=a[i];
+            // }
+            for (int i = n - 2; i >= 0; i--)
+            {
+                if (a[i] >= maxOnLeftTillNow)
+                {
+                    ans.Add(a[i]);
+                    maxOnLeftTillNow = a[i];
+                }
+            }
+            int l = 0, r = ans.Count-1;
+            while (l < r)
+            {
+                ans[l] = ans[l] ^ ans[r];
+                ans[r] = ans[l] ^ ans[r];
+                ans[l] = ans[l] ^ ans[r];
+                l++;
+                r--;
+            }
+            return ans;
+        }
     }
  }
