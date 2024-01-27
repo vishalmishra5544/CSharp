@@ -150,6 +150,8 @@ namespace PracticePrograms
             list.Remove(2);
             list.RemoveRange(3, 1);
             list.AddRange(new List<int> { 2,3,5});
+            list.Reverse();
+            var rev = list.Reverse<int>();
             var temp = list.Aggregate((accumulator, x) => accumulator + x);
             temp = list.Aggregate(10,(acu,x)=>acu+x);
             temp = list.Aggregate(10,(acu,x)=>acu+x,x=>x*-1);

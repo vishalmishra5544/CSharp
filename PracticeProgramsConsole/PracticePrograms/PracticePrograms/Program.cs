@@ -33,8 +33,10 @@ using PracticePrograms.DSA.CSharp;
 //AllArraysPrograms.moveNegativeElementsInRight(new int[8] {1,-2,3,-4,5,6,-9 ,-8}, 8);
 
 //var value =AllGreedyPrograms.fractionalKnapsack(50,new Item[3] { new Item(100,20),new Item(120,30),new Item(60, 10) },5);
-var value = AllArraysPrograms.leaders(new int[6] { 16, 17, 4, 3, 5, 2 }, 6);
-Console.WriteLine(value);
+//var value = AllArraysPrograms.leaders(new int[6] { 16, 17, 4, 3, 5, 2 }, 6);
+//AllArraysPrograms.convertToWave(5,new List<int> { 1,2,3,4,5});
+AllArraysPrograms.factorial(7);
+//Console.WriteLine(value);
 Console.ReadKey();
 
 

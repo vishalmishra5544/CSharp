@@ -191,5 +191,163 @@ namespace PracticePrograms
             }
             return ans;
         }
+
+        public static List<int> commonElements(int[] A, int[] B, int[] C, int n1, int n2, int n3)
+        {
+            //Your code here
+            /*List<int> ans = new List<int>();
+            int i=0,j=0,k=0,maxi;
+            HashSet<int> uniqueNumbers = new HashSet<int>();
+            while(i<n1 && j<n2 && k<n3)
+            {
+                maxi = Max(A[i],Max(B[j],C[k]));
+                while(i<n1 &&A[i]<maxi)
+                {
+                    i++;
+                }
+                while(j<n2 && B[j]<maxi)
+                {
+                    j++;
+                }
+                while(k<n3 && C[k]<maxi)
+                {
+                    k++;
+                }
+                if(i<n1 && j<n2 && k<n3 && A[i]==B[j] && B[j]==C[k])
+                {
+                    uniqueNumbers.Add(A[i]);
+                    i++;
+                    j++;
+                    k++;
+                }
+            }
+            foreach(var ele in uniqueNumbers)
+            {
+                ans.Add(ele);
+            }
+            return ans;*/
+
+            List<int> ans = new List<int>();
+            int i = 0, j = 0, k = 0, maxi;
+            int lastAdded = int.MinValue;
+            while (i < n1 && j < n2 && k < n3)
+            {
+                maxi = Max(A[i], Max(B[j], C[k]));
+                while (i < n1 && A[i] < maxi)
+                {
+                    i++;
+                }
+                while (j < n2 && B[j] < maxi)
+                {
+                    j++;
+                }
+                while (k < n3 && C[k] < maxi)
+                {
+                    k++;
+                }
+                if (i < n1 && j < n2 && k < n3 && A[i] == B[j] && B[j] == C[k])
+                {
+                    if (lastAdded != A[i])
+                    {
+                        ans.Add(A[i]);
+                        lastAdded = A[i];
+                    }
+                    i++;
+                    j++;
+                    k++;
+                }
+            }
+            return ans;
+        }
+        private static int Max(int a, int b)
+        {
+            return a > b ? a : b;
+        }
+
+        public static void convertToWave(int n, List<int> arr)
+        {
+            List<int> oddIndex = new List<int>();
+            List<int> evenIndex = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    evenIndex.Add(arr[i]);
+                }
+                else
+                    oddIndex.Add(arr[i]);
+            }
+            int o = 0, e = 0;
+            arr.Clear();
+            while (o < oddIndex.Count && e < evenIndex.Count)
+            {
+                arr.Add(oddIndex[o++]);
+                arr.Add(evenIndex[e++]);
+            }
+
+            while (e < evenIndex.Count)
+            {
+                arr.Add(evenIndex[e++]);
+            }
+        }
+
+        //Function to return a list of integers denoting spiral traversal of matrix.
+        public static List<int> spirallyTraverse(List<List<int>> matrix, int r, int c)
+        {
+            List<int> ans = new List<int>();
+            int top = 0, right = c - 1, down = r - 1, left = 0, i = 0, j = 0;
+            while (top <= down && left <= right)
+            {
+                j = left;
+                while (j <= right)
+                {
+                    ans.Add(matrix[top][j++]);
+                }
+                top++;
+                i = top;
+                while (i <= down)
+                {
+                    ans.Add(matrix[i++][right]);
+                }
+                right--;
+                j = right;
+                while (j >= left && top <= down)
+                {
+                    ans.Add(matrix[down][j--]);
+                }
+                //left++;
+                down--;
+                i = down;
+                while (i >= top && left <= right)
+                {
+                    ans.Add(matrix[i--][left]);
+                }
+                left++;
+            }
+            return ans;
+        }
+
+        public static List<int> factorial(int N)
+        {
+            List<int> ans = new List<int>();
+            ans.Add(1);
+            int mul, carry = 0;
+            for (int i = 2; i <= N; i++)
+            {
+                for (int j = 0; j < ans.Count; j++)
+                {
+                    mul = ans[j] * i + carry;
+                    ans[j]=(mul % 10);
+                    carry = mul / 10;
+                }
+                while (carry > 0)
+                {
+                    ans.Add(carry % 10);
+                    carry /= 10;
+                }
+            }
+            ans.Reverse();
+            return ans;
+        }
     }
  }
