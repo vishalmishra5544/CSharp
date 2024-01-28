@@ -349,5 +349,29 @@ namespace PracticePrograms
             ans.Reverse();
             return ans;
         }
+
+        public static int equilibriumPoint(long[] a, int n)
+        {
+            //Your code here
+            if (n == 1)
+                return (int)a[0];
+            long[] prefixSum = new long[n];
+            int ans = -1;
+            prefixSum[0] = a[0];
+            for (int i = 1; i < n; i++)
+            {
+                prefixSum[i] = prefixSum[i - 1] + a[i];
+            }
+
+            for (int i = 1; i < n - 1; i++)
+            {
+                if ((prefixSum[n - 1] - prefixSum[i]) == prefixSum[i - 1])
+                {
+                    ans = i + 1;
+                    break;
+                }
+            }
+            return ans;
+        }
     }
  }
