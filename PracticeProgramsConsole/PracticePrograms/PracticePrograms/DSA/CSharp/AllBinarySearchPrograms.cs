@@ -137,5 +137,23 @@ namespace PracticePrograms
             }
             return (long)Math.Floor(ans);
         }
+
+        //Function to search a given number in row-column sorted matrix.
+        public static bool searchInRowColumnWiseSortedMatrix(List<List<int>> matrix, int n, int m, int x)
+        {
+            int i = 0, j = m - 1;
+            while (i >= 0 && i <= n - 1 && j >= 0 && j <= m - 1)
+            {
+                if (matrix[i][j] == x)
+                    return true;
+                else if (matrix[i][j] > x)
+                {
+                    j--;
+                }
+                else if (matrix[i][j] < x)
+                    i++;
+            }
+            return false;
+        }
     }
 }
