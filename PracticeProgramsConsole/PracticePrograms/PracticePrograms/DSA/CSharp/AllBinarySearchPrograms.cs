@@ -155,5 +155,57 @@ namespace PracticePrograms
             }
             return false;
         }
+
+        public static int SearchInSortedRotatedArray(int[] A, int l, int h, int key)
+        {
+            //Your code here
+            int pivotElementIndex = FindPivotElement(A, l, h);
+            int indexOfFound = 0;
+            if (key >= A[l] && key <= A[pivotElementIndex])
+                indexOfFound = BinarySearch(A, l, pivotElementIndex, key);
+            else if (pivotElementIndex+1<=h && key >= A[pivotElementIndex + 1] && key <= A[h])
+                indexOfFound = BinarySearch(A, pivotElementIndex + 1, h, key);
+            return indexOfFound;
+        }
+
+        private static int FindPivotElement(int[] arr, int l, int h)
+        {
+            int mid = 0;
+            while (l <= h)
+            {
+                if (l == h)
+                    return l;
+                mid = l + (h - l) / 2;
+                if (mid - 1 >= l && arr[mid] < arr[mid - 1])
+                    return mid - 1;
+                if (mid + 1 <= h && arr[mid] > arr[mid + 1])
+                    return mid;
+                if (arr[l] > arr[mid])
+                {
+                    h = mid - 1;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
+            }
+            return mid;
+        }
+
+        private static int BinarySearch(int[] arr, int s, int e, int key)
+        {
+            int mid = 0;
+            while (s <= e)
+            {
+                mid = s + (e - s) / 2;
+                if (arr[mid] == key)
+                    return mid;
+                if (arr[mid] > key)
+                    e = mid - 1;
+                else if (arr[mid] < key)
+                    s = mid + 1;
+            }
+            return -1;
+        }
     }
 }

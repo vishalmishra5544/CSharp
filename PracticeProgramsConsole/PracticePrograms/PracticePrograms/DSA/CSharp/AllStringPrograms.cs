@@ -37,5 +37,25 @@ namespace PracticePrograms
             }
             return lastIndex;
         }
+
+        //Function to check if a string is Pangram (contains all english alphabets) or not.
+        public bool checkPangram(string s)
+        {
+            // your code here
+            int[] arr = new int[26];
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] >= 65 && s[i] <= 90)
+                    arr[s[i] - 'A']++;
+                else if (s[i] >= 97 && s[i] <= 122)
+                    arr[s[i] - 'a']++;
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] < 1)
+                    return false;
+            }
+            return true;
+        }
     }
 }
