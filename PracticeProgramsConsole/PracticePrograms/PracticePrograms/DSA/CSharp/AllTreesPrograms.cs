@@ -44,5 +44,34 @@ namespace PracticePrograms
             HelperPreOrder(root.left, ref ans);
             HelperPreOrder(root.right, ref ans);
         }
+
+        //Function to return a list containing elements of left view of the binary tree.
+        public List<int> LeftView(Node root)
+        {
+            //Your code here
+            if (root == null)
+                return new List<int>();
+            List<int> leftView = new List<int>();
+            Queue<Node> q = new Queue<Node>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                int size = q.Count;
+                int i = 0;
+                while (i < size)
+                {
+                    Node front = q.Dequeue();
+                    if (i == 0)
+                        leftView.Add(front.data);
+                    if (front.left != null)
+                        q.Enqueue(front.left);
+                    if (front.right != null)
+                        q.Enqueue(front.right);
+                    i++;
+                }
+
+            }
+            return leftView;
+        }
     }
 }
