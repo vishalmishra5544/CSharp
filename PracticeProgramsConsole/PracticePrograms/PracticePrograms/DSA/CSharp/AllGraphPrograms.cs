@@ -8,5 +8,6 @@ namespace PracticePrograms
 {
     internal class AllGraphPrograms
     {
+
     }
 }
