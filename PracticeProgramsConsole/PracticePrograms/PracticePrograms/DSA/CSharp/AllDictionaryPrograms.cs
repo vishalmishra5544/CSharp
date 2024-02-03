@@ -98,5 +98,25 @@ namespace PracticePrograms
             }
             return maxChar;
         }
+
+        public int getPairsCount(int[] arr, int n, int k)
+        {
+            //Your code here
+            Dictionary<int, int> d = new Dictionary<int, int>();
+            int noOfPairs = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (d.ContainsKey(k - arr[i]))
+                {
+                    noOfPairs += d[k - arr[i]];
+                }
+                if (d.ContainsKey(arr[i]))
+                    d[arr[i]]++;
+                else
+                    d.Add(arr[i], 1);
+            }
+            return noOfPairs;
+
+        }
     }
 }
