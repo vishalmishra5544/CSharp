@@ -192,7 +192,7 @@ namespace PracticePrograms
             return ans;
         }
 
-        public static List<int> commonElements(int[] A, int[] B, int[] C, int n1, int n2, int n3)
+        public static List<int> commonElements(int[] A, int[] B, int[] C, int n1, int n2, int n3)//In 3 sorted arrays
         {
             //Your code here
             /*List<int> ans = new List<int>();

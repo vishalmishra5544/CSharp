@@ -170,7 +170,7 @@ namespace PracticePrograms
             //Projection
             var select = list.Select(x=>x.ToString());
             //Sorting
-            list.Sort();
+            list.Sort();            
             list.Sort(new NumberComparer());
             var orderBy = list.OrderBy(x=>x);
             orderBy = list.OrderByDescending(x=>x);
