@@ -65,6 +65,58 @@ public:
         }
         return -1;
     }
+
+vector<int> printKClosest(vector<int> arr, int n, int k, int x) {
+        // code here
+        //using 2 pointer  (outside to inside window length minimization)
+        // int s=0,e=n-1;
+        // while((e-s)>k)
+        // {
+        //     if((abs(x-arr[s]))>=(abs(arr[e]-x)))
+        //     {
+        //         s++;
+        //     }
+        //     else
+        //     {
+        //         e--;
+        //     }
+        // }
+        // vector<int> ans;
+        // while(s<=e)
+        // {
+        //     ans.push_back(arr[s]);
+        //     s++;
+        // }
+        // return ans;
+        
+        //using binary search  (inside to outside window length maximization)
+        int ind=lower_bound(arr.begin(),arr.end(),x)-arr.begin();
+        int i=ind-1,j=ind+1;
+        vector<int>ans;
+        if(arr[ind]!=x){
+            i=ind-1;
+            j=ind;
+        }
+        while(k--){
+            int diffL=INT_MAX,diffR=INT_MAX;
+            if(i>=0){
+                diffL=abs(x-arr[i]);
+            }
+            if(j<n){
+                diffR=abs(arr[j]-x);
+            }
+            if(diffL<diffR){
+                ans.push_back(arr[i]);
+                i--;
+            }
+            else{
+                ans.push_back(arr[j]);
+                j++;
+            }
+        }
+        return ans;
+        
+    }
 int main()
 {
 	return 0;
