@@ -138,6 +138,20 @@ Node *sortedInsert(Node* head, int data)
             return new Node(0);
         
         return res;
+//Detect Loop in linked list
+bool detectLoop(Node* head)
+    {
+       Node *slow = head;
+       Node *fast = head;
+       while(fast!=NULL && fast->next!=NULL)
+       {
+           slow=slow->next;
+           fast=fast->next->next;
+           if(slow==fast)
+            return true;
+       }
+       return false;
+    }
 int main()
 {
     return 0;
