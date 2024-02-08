@@ -74,6 +74,36 @@ using namespace std;
         return dista+distb;
         
     }
+
+    //check if all leaves are at same level
+     bool checkForLevel( Node *root, int k,int &level)
+    {
+        if(root==NULL)
+            return true;
+        
+        if( root->left == NULL and root->right == NULL)
+        {
+            if(level==0){
+                level = k;
+            }
+            else if(level !=k)
+                return false;
+            else
+                return true;
+        }
+         
+        return checkForLevel(root->left,k+1,level) and checkForLevel(root->right,k+1,level);
+
+    }
+
+    bool check(Node *root)
+    {
+         if(root==NULL)
+            return true;
+         int level=0;   
+         return checkForLevel(root,0,level);
+
+    }
 int main()
 {
 	return 0;
