@@ -152,6 +152,26 @@ bool detectLoop(Node* head)
        }
        return false;
     }
+
+//reverse a linked list
+struct Node* reverseLinkedList(struct Node *head)
+    {
+        // code here
+        // return head of reversed list
+        Node* prev=NULL;
+        Node* curr=head;
+        Node* nxt;
+        while(curr !=NULL)
+        {
+            nxt=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nxt;
+        }
+        
+        return prev;
+    }
+
 int main()
 {
     return 0;
