@@ -104,6 +104,34 @@ using namespace std;
          return checkForLevel(root,0,level);
 
     }
+    //find height
+    int findHeight(Node* node)
+    {
+        if(node==NULL)
+         return 0;
+        int left = findHeight(node->left);
+        int right = findHeight(node->right);
+        return 1+max(left,right);
+    }
+    //check if every node = sum of left&right child
+    int isSumProperty(Node *root)
+    {
+     // Add your code here
+      if(root==NULL || (root->left==NULL&&root->right==NULL))
+       return 1;
+      int sum =0;
+      if(root->left)
+      {
+          sum+=root->left->data;
+      }
+      if(root->right)
+      {
+          sum+=root->right->data;
+      }
+      if(root->data!=sum)
+        return 0;
+      return isSumProperty(root->left) && isSumProperty(root->right);
+    }
 int main()
 {
 	return 0;
