@@ -117,6 +117,13 @@ vector<int> printKClosest(vector<int> arr, int n, int k, int x) {
         return ans;
         
     }
+
+    int transitionPoint(int arr[], int n) {
+        // code here
+        if(binary_search(arr,arr+n,1))
+           return lower_bound(arr,arr+n,1)-arr;
+        return -1;
+    }
 int main()
 {
 	return 0;
