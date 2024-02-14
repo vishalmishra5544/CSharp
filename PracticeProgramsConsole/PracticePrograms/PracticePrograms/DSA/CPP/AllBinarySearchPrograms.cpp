@@ -125,6 +125,58 @@ vector<int> printKClosest(vector<int> arr, int n, int k, int x) {
         return -1;
     }
 
+    //Function to find minimum number of pages.
+    int findPages(int A[], int N, int M) //we minimize the maximum noOfPages continuously read.
+    {
+        //code here
+        if(M>N)
+          return -1;
+        int start=0,end=0,mid,ans=-1;
+        for(int i=0;i<N;i++)
+        {
+            end+=A[i];
+        }
+        while(start<=end)
+        {
+            mid = start + (end-start)/2;
+            if(isPossibleToAllocateBooks(A,N,M,mid))
+            {
+                ans = mid;
+                end = mid-1;
+            }
+            else
+            {
+                start = mid+1;
+            }
+        }
+        return ans;
+    }
+    bool isPossibleToAllocateBooks(int A[],int N,int M,int atMaxPages)
+    {
+        
+        int noOfStudents=1;
+        long long totalPages=0;
+        for(int i=0;i<N;i++)
+        {
+            if(A[i]>atMaxPages)
+             return false;
+           
+            if(totalPages+A[i]>atMaxPages)
+            {
+                totalPages=A[i];
+                noOfStudents++;
+                if(noOfStudents>M)
+                  return false;
+            }
+            else
+            {
+                 totalPages+=A[i];
+            }
+            
+        }
+        return true;
+    }
+
 long long minTime(int arr[], int n, int k)
     {
         // code here
