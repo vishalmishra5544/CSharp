@@ -154,8 +154,8 @@ vector<int> printKClosest(vector<int> arr, int n, int k, int x) {
     bool isPossibleToAllocateBooks(int A[],int N,int M,int atMaxPages)
     {
         
-        int noOfStudents=1;
-        long long totalPages=0;
+        int noOfStudents=1;//first student, we require at least 1  student to start with reading first
+        long long totalPages=0;//total pages read
         for(int i=0;i<N;i++)
         {
             if(A[i]>atMaxPages)
@@ -221,6 +221,79 @@ long long minTime(int arr[], int n, int k)
             }
         }
         return true;
+    }
+
+    int maxHeight(vector<int>&A, int M){
+        //Write your code here
+        int start=0,end=INT_MIN,mid=0,ans=-1;
+        for(auto &ele:A)
+        {
+            end=max(end,ele);
+        }
+        while(start<=end)
+        {
+            mid = start+(end-start)/2;
+            if(isPossibleToCut(A,M,mid))
+            {
+                ans=mid;
+                start=mid+1;
+            }
+            else
+            {
+                end=mid-1;
+            }
+        }
+        return ans;
+    }
+    bool isPossibleToCut(vector<int>&A,int M,int atMaxHeight)
+    {
+        long long totalWood=0;
+        for(int i=0;i<A.size();i++)
+        {
+            if(A[i]>atMaxHeight)
+              totalWood += (A[i]-atMaxHeight);
+        }
+        if(totalWood>=M)
+         return true;
+        else
+         return false;
+    }
+int solve(int n, int k, vector<int> &stalls) {
+        sort(stalls.begin(),stalls.end());//sort because here in input there is non sorted positons of stalls but we need sorted as these are positions on numberline
+        int start=0,end=0,mid=0,ans=-1;
+        end=stalls[n-1]-stalls[0];
+        while(start<=end)
+        {
+            int mid = start + (end-start)/2;
+            if(isPossibleToPlaceCows(n,k,stalls,mid))
+            {
+                ans=mid;
+                start = mid+1;
+            }
+            else
+            {
+                end = mid-1;
+            }
+        }
+        return ans;
+    }
+    
+    bool isPossibleToPlaceCows(int n,int k,vector<int> &stalls,int atMinDistance)
+    {
+        int noOfCowsPlaced=1;//first cow, require at least 1 cow to place first
+        int lastStallPosition=stalls[0];//first cow will be placed at 1st stall
+        for(int i=1;i<n;i++)//start from 2nd stall
+        {
+            if(stalls[i]-lastStallPosition>=atMinDistance)
+            {
+                noOfCowsPlaced++;
+                if(noOfCowsPlaced==k)
+                  return true;
+                lastStallPosition=stalls[i];
+            }
+        }
+         
+        return false;
     }
 int main()
 {
