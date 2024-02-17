@@ -295,6 +295,66 @@ int solve(int n, int k, vector<int> &stalls) {
          
         return false;
     }
+
+    include <bits/stdc++.h>
+using namespace std;
+ 
+
+ 
+// Function to find the minimum time required
+// to fulfill the orders
+int findMinTime(int n, vector<int>& cooks, int l)
+{
+    // write your code here
+    int s = 0, highestRank = *max_element(cooks.begin(),cooks.end()),e=highestRank*(n*(n+1)/2); //end time is sum of 1R+2R+...+nR for most time taking cook i.e rank highest
+    int mid, ans = -1;
+ 
+    // Loop to implement binary search
+    while (s <= e) {
+        mid = (s + e) / 2;
+        if (isPossibleToCookPratas(n, cooks, l, mid)) {
+            ans = mid;
+            e = mid - 1;
+        }
+        else {
+            s = mid + 1;
+        }
+    }
+ 
+    return ans;
+}
+// Function to check if it is possible
+// to fulfill N orders in 'mid' time
+bool isPossibleToCookPratas(int reqdNoOfPratas, vector<int>& cook, int n, int atMaxMinutes)
+{
+    int noOfPratasCooked = 0;
+    for (int i = 0; i < n; i++) {
+ 
+        // For each cook count the pratas
+        int R = cook[i];
+        int j = 1;// counter for 1R + 2R +...jR
+        int timeTaken = 0;//for this cook as all can do it in parallel hence time start from 0
+ 
+        
+        while (true) {
+            if(timeTaken + j*R<=atMaxMinutes )
+            {
+                noOfPratasCooked++;
+                timeTaken+=j*R;
+                j++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        if (noOfPratasCooked >= reqdNoOfPratas)
+            return true;
+    }
+ 
+    return false;
+}
 int main()
 {
 	return 0;
