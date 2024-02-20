@@ -153,6 +153,7 @@ int removeAllOccurreneOfSubstring(string str, int N,
     // minimized length of str
     return stackOfChar.size();
 }
+
 // VALID PALINDROME -2  https://www.geeksforgeeks.org/remove-character-string-make-palindrome/
 // This method returns -1 if it is not possible to make string
 // a palindrome. It returns -2 if string is already a palindrome.
