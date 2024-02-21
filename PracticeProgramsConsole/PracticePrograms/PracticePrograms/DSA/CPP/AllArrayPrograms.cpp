@@ -44,6 +44,31 @@ string findSum(string X, string Y) {
         return ans;
     }
 
+    int smallestSubWithSum(int a[], int n, int x)
+    {
+        int ans=0;
+        int sum=0;
+        int maxSum=0;
+        
+        int start=0;
+        
+        int minLength = n+1;
+        
+        for(int i=0;i<n;i++){
+            
+            sum+=a[i];
+            
+            if(sum>x){  //is sum is greater then X then subtract sum
+            
+                while(sum>x){
+                    sum-=a[start++];
+                }
+                minLength = min(minLength,i-start+2);
+                
+            } 
+        }
+        return minLength ==n+1?0:minLength;
+    }
 int main()
 {
     string ans =findSum("25","23");
