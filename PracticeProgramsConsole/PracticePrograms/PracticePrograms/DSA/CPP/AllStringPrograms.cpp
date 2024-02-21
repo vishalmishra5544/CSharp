@@ -196,6 +196,32 @@ int possiblePalinByRemovingOneChar(string str)
     //  if complete string is palindrome then return mid character
     return -2;
 }
+
+//https://leetcode.com/problems/minimum-time-difference/
+int findMinDifference(vector<string>& timePoints) {
+        vector<int> time(timePoints.size(),0);
+        int hrs,minutes,i=0,n=timePoints.size();
+        for(auto &ele:timePoints)
+        {
+            hrs=stoi(ele.substr(0,2));
+            minutes=stoi(ele.substr(3,2));
+            time[i++]=(hrs*60)+minutes;           
+        }
+        sort(time.begin(),time.end());        
+        int minDiff=INT_MAX;
+        for(int j=0;j<n-1;j++)
+        {
+            minDiff=min(minDiff,(time[j+1]-time[j]));//compare neighbours for min diff
+        }
+
+        int specialDiff1=time[n-1]-time[0]; //for cases like: 00:00 interpreted as 00:00
+        minDiff=min(minDiff,specialDiff1);
+        int specialDiff2=time[0]+(24*60)-time[n-1]; //for cases like: 00:00 interpreted as 24:00 and compared with 23:59
+        minDiff=min(minDiff,specialDiff2);
+        return minDiff;
+    }
+
+
 int main()
 {
 	return 0;
