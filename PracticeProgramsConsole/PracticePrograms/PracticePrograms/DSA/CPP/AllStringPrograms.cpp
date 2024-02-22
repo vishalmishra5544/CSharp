@@ -221,7 +221,48 @@ int findMinDifference(vector<string>& timePoints) {
         return minDiff;
     }
 
-
+//https://leetcode.com/problems/palindromic-substrings/
+int countPalindromicSubstringsInString(string s) {
+        int count=0;
+        int i=0,j=0,n=s.length();
+        for(int k=0;k<n;k++)//odd length substrings check
+        {
+            i=k;
+            j=k;
+            while(i>=0&&j<=n-1)
+            {
+                if(s[i]==s[j])//if it is palindrome then expand
+                {
+                    count++;
+                    i--;
+                    j++;
+                }
+                else//else start from next start position
+                {
+                    break;
+                }
+            }
+        }
+        for(int k=0;k<n-1;k++)//even length substrings check
+        {
+            i=k;
+            j=k+1;
+            while(i>=0&&j<=n-1)
+            {
+                if(s[i]==s[j])//if it is palindrome then expand
+                {
+                    count++;
+                    i--;
+                    j++;
+                }
+                else//else start from next start position
+                {
+                  break;
+                }
+            }
+        }
+        return count;
+    }
 int main()
 {
 	return 0;
