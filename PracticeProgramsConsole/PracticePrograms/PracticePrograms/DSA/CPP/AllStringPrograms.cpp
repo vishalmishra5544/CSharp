@@ -261,8 +261,28 @@ int countPalindromicSubstringsInString(string s) {
                 }
             }
         }
+        
         return count;
     }
+string reverseOnlyLetters(string str)
+    { 
+        //code here.
+        int l=0,h=str.length()-1;
+        while(l<h)
+        {
+            while(l<h&&!isalpha(str[l]))
+            {
+                l++;
+            }
+            while(l<h&&!isalpha(str[h]))
+            {
+                h--;
+            }
+            swap(str[l],str[h]);
+            l++,h--;
+        }
+        return str;
+    } 
 int main()
 {
 	return 0;
