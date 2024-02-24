@@ -283,6 +283,35 @@ string reverseOnlyLetters(string str)
         }
         return str;
     } 
+bool areIsomorphic(string str1, string str2)
+    {
+        
+        // Your code here
+        if(str1.length()!=str2.length())
+          return false;
+        unordered_map<char,int> map;
+        unordered_set<char> isMapped;
+        for(int i=0;i<str1.length();i++)
+        {
+            
+            if(map.find(str1[i])!=map.end())
+            {
+                if(map[str1[i]]!=str2[i])
+                  return false;
+            }
+            else
+            {
+                if(isMapped.find(str2[i])!=isMapped.end())
+                  return false;
+                else
+                {
+                  map[str1[i]]=str2[i];
+                  isMapped.insert(str2[i]);
+                }
+            }
+        }
+        return true;
+    }
 int main()
 {
 	return 0;
