@@ -312,6 +312,22 @@ bool areIsomorphic(string str1, string str2)
         }
         return true;
     }
+string longestCommonPrefix (string arr[], int N)
+    {
+       string prefix=arr[0];
+       for(int i=1;i<N;i++){
+           string ans="";
+           string curr=arr[i];
+           int l=min(prefix.length(),curr.length());
+           for(int j=0;j<l;j++){
+               if(prefix[j]!=curr[j]) break;
+               ans+=curr[j];
+           }
+           if(ans=="") return "-1";
+           else prefix=ans;
+       }
+       return prefix;
+    }
 int main()
 {
 	return 0;
