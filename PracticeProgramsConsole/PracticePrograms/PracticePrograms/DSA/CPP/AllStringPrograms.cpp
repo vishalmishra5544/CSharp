@@ -328,6 +328,57 @@ string longestCommonPrefix (string arr[], int N)
        }
        return prefix;
     }
+
+vector<string> AllPossibleStrings(string s){
+	// Code here
+	vector<string> ans;
+	string temp="";
+	powerSet(s,0,ans,temp);
+	sort(ans.begin(),ans.end());
+	return ans;
+}
+void powerSet(string s,int ind,vector<string> &ans,string &temp)
+{
+	if(ind>=s.size())
+	{
+		if(temp!="")
+		    ans.push_back(temp);
+		return;
+	}
+	temp.push_back(s[ind]);
+	powerSet(s,ind+1,ans,temp);
+	temp.pop_back();
+	powerSet(s,ind+1,ans,temp);
+}
+//Group Anagrams  https://www.geeksforgeeks.org/problems/print-anagrams-together/1
+vector<int> getHash(string ele)
+   {
+       vector<int> hash(26,0);
+       for(auto &e:ele)
+       {
+           hash[e-'a']+=1;
+       }
+       return hash;
+ }
+vector<vector<string>> Anagrams(vector<string>& string_list) 
+{
+    //code here
+    map<vector<int>,vector<string>> groups;
+    for(auto &ele:string_list)
+    {
+        auto hash=getHash(ele);
+            
+        groups[hash].push_back(ele);
+    }
+        
+    vector<vector<string>> ans;
+    for(auto &it:groups)
+    {
+        ans.push_back(it.second);
+    }
+    return ans;
+}
+
 int main()
 {
 	return 0;
