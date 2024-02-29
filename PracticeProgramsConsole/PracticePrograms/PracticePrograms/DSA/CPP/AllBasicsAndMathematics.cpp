@@ -19,6 +19,29 @@
         }
         return {repeating,missing};
     }
+    int gcdOfNNumbers(int N, int arr[])
+    {
+    	// Your code goes here
+    	int res=arr[0];
+    	for(int i=1;i<N;i++)
+    	{
+    	    res=gcd(arr[i],res);
+    	    if(res==1)
+    	      return 1;
+    	}
+    	return res;
+    }
+    int gcd(int a,int b)
+    {
+        while(a!=b)
+        {
+            if(a>b)
+              a=a-b;
+            else
+              b=b-a;
+        }
+        return a;
+    }
  int main()
 {
     return 0;
