@@ -132,6 +132,22 @@ using namespace std;
         return 0;
       return isSumProperty(root->left) && isSumProperty(root->right);
     }
+
+int getSize(Node* node) {
+        // code here
+        int noOfNodes=0;
+        countNoOfNodes(node,noOfNodes);
+        return noOfNodes;
+    }
+    void countNoOfNodes(Node *node,int& noOfNodes)
+    {
+        if(node==NULL)
+          return;
+        noOfNodes++;
+        countNoOfNodes(node->left,noOfNodes);
+        countNoOfNodes(node->right,noOfNodes);
+    }
+
 int main()
 {
 	return 0;
