@@ -91,6 +91,26 @@ string findSum(string X, string Y) {
         ans.push_back(arr[dq.front()]);//ans of last window
         return ans;
     }
+    public int firstElementKTime(int n, int k, int[] a)
+    {
+        if(k==1)
+        {
+            return n>0?a[0]:-1;
+        }
+        Dictionary<int,int> d = new Dictionary<int,int>();
+        foreach(var ele in a)
+        {
+            if(d.ContainsKey(ele))
+            {
+              d[ele]++;
+              if(d[ele]==k)
+                return ele;
+            }
+            else 
+              d.Add(ele,1);
+        }
+        return -1;
+    }
 int main()
 {
     string ans =findSum("25","23");
