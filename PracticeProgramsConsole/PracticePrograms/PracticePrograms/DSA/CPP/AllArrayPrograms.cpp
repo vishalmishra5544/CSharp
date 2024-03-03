@@ -91,6 +91,7 @@ string findSum(string X, string Y) {
         ans.push_back(arr[dq.front()]);//ans of last window
         return ans;
     }
+
     public int firstElementKTime(int n, int k, int[] a)
     {
         if(k==1)

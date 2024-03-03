@@ -355,6 +355,30 @@ bool isPossibleToCookPratas(int reqdNoOfPratas, vector<int>& cook, int n, int at
  
     return false;
 }
+//https://www.geeksforgeeks.org/problems/minimum-element-in-a-sorted-and-rotated-array3611/1?page=6&difficulty=Easy&sortBy=submissions
+int findMin(int a[], int n){
+        //complete the function here
+        int start = 0;
+        int end= n-1;
+        int mid=0;
+      
+        while( start+1 < end){
+            mid = (start+end)/2;
+            if((a[start] < a[mid])&& (a[end] < a [mid])){
+             
+                 start = mid;
+          
+            }else{
+                end=mid;
+            }
+        }
+      if( a[start] < a[end]){
+          mid = start;
+      }else{
+          mid= end;
+      }
+     return a[mid];
+    }
 int main()
 {
 	return 0;
