@@ -429,7 +429,24 @@ string longestPalindromicSubstring (string s) {
         
         return s.substr(start,maxl);
     }
-
+    //https://www.geeksforgeeks.org/problems/print-first-letter-of-every-word-in-the-string3632/1?page=5&difficulty=Basic&sortBy=submissions
+    string firstAlphabet(string S)
+	{
+	    // Your code goes here
+	    string ans="";
+	    for(int i=0;i<S.length();i++)
+	    {
+	        string w="";
+	        while(i<S.length() && S[i]!=' ')
+	        {
+	            w+=S[i];
+	            i++;
+	        }
+	        if(w!="")
+	          ans+=w[0];
+	    }
+	    return ans;
+	}
 int main()
 {
 	return 0;
