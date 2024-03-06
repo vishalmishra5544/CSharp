@@ -380,20 +380,27 @@ int findMin(int a[], int n){
      return a[mid];
     }
 
-//https://www.geeksforgeeks.org/problems/three-great-candidates0515/1?page=11&difficulty=Easy&sortBy=submissions
-long long maxProductOf3Numbers(int ar[], int n) {
-        // code here
-        long long mx1{INT_MIN}, mx2{INT_MIN}, mx3{INT_MIN}, m1{INT_MAX}, m2{INT_MAX};
-        
-        for(int i=0; i < n; i++) {
-            if(ar[i] > mx1) mx3 = mx2, mx2 = mx1, mx1 = ar[i];
-            else if(ar[i] > mx2) mx3 = mx2, mx2 = ar[i];
-            else if(ar[i] > mx3) mx3 = ar[i];
-            if(ar[i] < m1) m2 = m1, m1 = ar[i];
-            else if(ar[i] < m2) m2 = ar[i];
+
+//https://www.geeksforgeeks.org/problems/find-the-highest-number2259/1?page=14&difficulty=Easy&sortBy=submissions
+int findPeakElement(vector<int>& a) 
+    {
+        // Code here.
+        int start=0,end=a.size()-1,mid,ans=-1;
+        while(start<=end)
+        {
+            mid=start+(end-start)/2;
+            if(mid-1>=0 && mid+1<=a.size()-1&&a[mid]>a[mid-1]&&a[mid]>a[mid+1])
+              return a[mid];
+            else if(mid+1<=a.size()-1&&a[mid]<a[mid+1])
+            {
+                start=mid+1;
+            }
+            else if(mid+1<=a.size()-1&&a[mid]>a[mid+1])
+            {
+                end=mid-1;
+            }
         }
-        
-        return max(m1 * m2 * mx1, mx1 * mx2 * mx3);
+        return ans;
     }
 int main()
 {

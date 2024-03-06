@@ -42,6 +42,21 @@
         }
         return a;
     }
+    //https://www.geeksforgeeks.org/problems/three-great-candidates0515/1?page=11&difficulty=Easy&sortBy=submissions
+long long maxProductOf3Numbers(int ar[], int n) {
+        // code here
+        long long mx1{INT_MIN}, mx2{INT_MIN}, mx3{INT_MIN}, m1{INT_MAX}, m2{INT_MAX};
+        
+        for(int i=0; i < n; i++) {
+            if(ar[i] > mx1) mx3 = mx2, mx2 = mx1, mx1 = ar[i];
+            else if(ar[i] > mx2) mx3 = mx2, mx2 = ar[i];
+            else if(ar[i] > mx3) mx3 = ar[i];
+            if(ar[i] < m1) m2 = m1, m1 = ar[i];
+            else if(ar[i] < m2) m2 = ar[i];
+        }
+        
+        return max(m1 * m2 * mx1, mx1 * mx2 * mx3);
+    }
  int main()
 {
     return 0;
