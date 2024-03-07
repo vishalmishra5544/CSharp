@@ -57,6 +57,32 @@ long long maxProductOf3Numbers(int ar[], int n) {
         
         return max(m1 * m2 * mx1, mx1 * mx2 * mx3);
     }
+//https://www.geeksforgeeks.org/problems/sieve-of-eratosthenes5242/1?page=10&difficulty=Easy&sortBy=submissions
+vector<int> sieveOfEratosthenes(int n)
+    {
+        // Write Your Code here
+        vector<int> sieve;
+        vector<int> ans(n+1,1);
+        ans[0]=0;
+        ans[1]=0;
+        for(int i=4;i<=n;i+=2)
+         ans[i]=0;
+        for(int i=6;i<=n;i+=3)
+         ans[i]=0;
+        for(int i=5;i*i<=n;i+=6)
+        {
+            for(int j=i*i;j<=n;j+=i)
+              ans[j]=0;
+            for(int j=(i+2)*(i+2);j<=n;j+=(i+2))
+              ans[j]=0; 
+        }
+        for(int i=2;i<=n;i++)
+        {
+            if(ans[i]&1==1)
+              sieve.push_back(i);
+        }
+        return sieve;
+    }
  int main()
 {
     return 0;
