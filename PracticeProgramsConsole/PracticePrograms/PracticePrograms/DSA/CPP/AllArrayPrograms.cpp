@@ -112,6 +112,41 @@ string findSum(string X, string Y) {
         }
         return -1;
     }
+    long maximumSumSubarray(int k, vector<int> &arr , int n){
+        // code here 
+        int i=0,start=0;
+        long int sum=0,maxi=INT_MIN;
+        for(i=0;i<k;i++)
+        {
+            sum+=arr[i];
+        }
+        maxi=max(maxi,sum);
+        while(i<n)
+        {
+            sum-=arr[start++];
+            sum+=arr[i++];
+            maxi=max(maxi,sum);
+        }
+        return maxi;
+    }
+    long long maxProduct(vector<int> arr, int n) {
+	    // code here
+	    long long prefix = 1;
+        long long sufix = 1;
+        long long ans = INT_MIN;
+        for(int i=0; i<n; i++){
+            prefix = prefix * arr[i];
+            sufix = sufix * arr[n-i-1];
+            ans = max(ans,max(prefix,sufix));
+             if(prefix == 0){
+                prefix = 1;
+            }
+            if(sufix == 0){
+                sufix = 1;
+            }
+        }
+        return ans;
+	}
 int main()
 {
     string ans =findSum("25","23");
