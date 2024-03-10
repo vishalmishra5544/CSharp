@@ -447,6 +447,45 @@ string longestPalindromicSubstring (string s) {
 	    }
 	    return ans;
 	}
+
+    //https://practice.geeksforgeeks.org/contest/gfg-weekly-coding-contest-145/problems
+string createString(int n, int k, string s) {
+        // code here
+        int arr[26]={0};
+        for(auto &ele:s)
+        {
+            arr[ele-'a']+=1;
+        }
+        
+        string ans="";
+        int tempK,nextInd;
+        for(int i=25;i>=0;i--)
+        {
+            nextInd=1;
+            while(arr[i]>0)
+            {
+                tempK=1;
+                while(arr[i]>0&&tempK<=k)
+                {
+                    ans+=(i+'a');
+                    arr[i]-=1;
+                    tempK++;
+                }
+                if(arr[i]>0)
+                {
+                    while(i-nextInd>=0 && arr[i-nextInd]<=0)
+                      nextInd++;
+                    if(i-nextInd<0)
+                      return ans;
+                    //cout<<i-nextInd<<" ";
+                    ans+=(i-nextInd+'a');
+                    arr[i-nextInd]-=1;
+                }
+            }
+            
+        }
+        return ans;
+    }
 int main()
 {
 	return 0;
