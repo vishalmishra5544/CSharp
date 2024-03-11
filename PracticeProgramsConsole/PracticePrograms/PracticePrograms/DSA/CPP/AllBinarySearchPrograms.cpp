@@ -402,6 +402,38 @@ int findPeakElement(vector<int>& a)
         }
         return ans;
     }
+
+    //https://www.geeksforgeeks.org/problems/count-pairs-sum-in-matrices4332/1
+    int countPairsInSortedMatrix(vector<vector<int>> &mat1, vector<vector<int>> &mat2, int n, int x)
+	{
+	    int ans=0;
+	    for(int i=0;i<n;i++)
+	    {
+	        for(int j=0;j<n;j++)
+	        {
+	            if(foundInSortedMatrix(mat2,x-mat1[i][j],n))
+	            {
+	               ans++;
+	            }
+	        }
+	    }
+	    return ans;
+	}
+	
+	bool foundInSortedMatrix(vector<vector<int>> &mat,int x,int n)
+	{
+	    int row=0,col=n-1;
+	    while(row<n && col>=0)
+	    {
+	        if(mat[row][col]==x)
+	          return true;
+	        else if(mat[row][col]<x)
+	          row++;
+	        else
+	         col--;
+	    }
+	    return false;
+	}
 int main()
 {
 	return 0;
