@@ -96,6 +96,14 @@ int isLeap(int N){
            return 0;
        }
     }
+
+//https://www.geeksforgeeks.org/problems/print-the-kth-digit3520/1?page=2&difficulty=Basic&status=unsolved&sortBy=submissions
+int kthDigit(int A,int B,int K){
+    // code here
+    long long int p = pow(A,B);
+    string s = to_string(p);
+    return s[s.length()-K]-'0';
+}
  int main()
 {
     return 0;
