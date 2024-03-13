@@ -104,6 +104,15 @@ int kthDigit(int A,int B,int K){
     string s = to_string(p);
     return s[s.length()-K]-'0';
 }
+
+//https://www.geeksforgeeks.org/problems/check-if-a-number-is-power-of-another-number5442/1?page=2&difficulty=Basic&status=unsolved&sortBy=submissions
+int isPowerOfAnother(long long x, long long y){
+        if ( x == 1 ) 
+           return y == 1;
+        while (!( y % x )) y /= x;
+        return y == 1; 
+ }
+
  int main()
 {
     return 0;
