@@ -112,7 +112,17 @@ int isPowerOfAnother(long long x, long long y){
         while (!( y % x )) y /= x;
         return y == 1; 
  }
-
+ //https://www.geeksforgeeks.org/problems/elements-in-the-range2834/1?page=4&difficulty=Basic&sortBy=submissions
+ bool check_elements_are_in_range_A_B(int arr[], int n, int A, int B)
+	{
+	    unordered_set<int> count;
+        for(int i=0;i<n;i++){
+            if(arr[i]>=A && arr[i]<=B) count.insert(arr[i]);
+        }
+      
+        for(int i=A;i<=B;i++) if(count.find(i)==count.end()) return false;
+        return true;
+	}
  int main()
 {
     return 0;
