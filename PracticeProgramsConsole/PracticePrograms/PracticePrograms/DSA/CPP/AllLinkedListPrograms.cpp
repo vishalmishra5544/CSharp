@@ -255,6 +255,21 @@ void reverselist(Node *&head)
     	*head = mergelist(Ahead, Dhead);
     	// merging back both lists in increasing order
     }
+
+//https://www.geeksforgeeks.org/problems/delete-without-head-pointer/1
+//Function to delete a node without any reference to head pointer.
+    void deleteNode(Node *del_node)
+    {
+       // Your code here
+       if(del_node!=NULL && del_node->next!=NULL)
+       {
+           Node *temp=del_node->next;
+           del_node->data=del_node->next->data;
+           del_node->next=del_node->next->next;
+           free(temp);
+       }
+       
+    }
 int main()
 {
     return 0;
