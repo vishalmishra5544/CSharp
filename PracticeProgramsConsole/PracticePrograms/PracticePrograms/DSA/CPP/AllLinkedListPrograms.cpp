@@ -270,6 +270,27 @@ void reverselist(Node *&head)
        }
        
     }
+//https://www.geeksforgeeks.org/problems/count-pairs-whose-sum-is-equal-to-x/1
+    int countPairs(struct Node* head1, struct Node* head2, int x) {
+        unordered_set<int> h;
+        int pair=0;
+        Node *t=head1;
+        while(t)
+        {
+            h.insert(t->data);
+            t=t->next;
+        }
+        t=head2;
+        while(t)
+        {
+            if(h.find(x-t->data)!=h.end())
+            {
+                pair++;
+            }
+            t=t->next;
+        }
+        return pair;
+    }
 int main()
 {
     return 0;
