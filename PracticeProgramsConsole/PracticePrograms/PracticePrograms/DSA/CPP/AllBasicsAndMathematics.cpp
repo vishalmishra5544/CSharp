@@ -123,6 +123,10 @@ int isPowerOfAnother(long long x, long long y){
         for(int i=A;i<=B;i++) if(count.find(i)==count.end()) return false;
         return true;
 	}
+//https://www.geeksforgeeks.org/problems/series-ap5310/1?page=2&difficulty=School&sortBy=submissions
+     int nthTermOfAP(int a1, int a2, int n) {
+        return a1+(n-1)*(a2-a1);
+    }
  int main()
 {
     return 0;
