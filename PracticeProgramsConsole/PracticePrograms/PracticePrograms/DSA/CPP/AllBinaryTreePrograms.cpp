@@ -23,6 +23,35 @@ vector<int> levelOrder(Node* root)
     }
     return ans;
 }
+
+ void preorder(Node *root,int sum,int& maxi,int noOfNodes,int & maxNoOfNodes)
+    {
+        if(root==NULL)
+        {
+            if(maxNoOfNodes<noOfNodes)
+            {
+                maxNoOfNodes=noOfNodes;
+                maxi=sum;
+            }
+            else if(maxNoOfNodes==noOfNodes)
+            {
+                maxi=max(maxi,sum);
+            }
+            return;
+        }
+        sum+=root->data;
+        noOfNodes+=1;
+        preorder(root->left,sum,maxi,noOfNodes,maxNoOfNodes);
+        preorder(root->right,sum,maxi,noOfNodes,maxNoOfNodes);
+    }
+    int sumOfLongRootToLeafPath(Node *root)
+    {
+        //code here
+        int sum=0, maxi=0,noOfNodes=0,maxNoOfNodes=0;
+        preorder(root,sum,maxi,noOfNodes,maxNoOfNodes);
+        return maxi;
+        
+    }
 int main()
 {
 	return 0;
