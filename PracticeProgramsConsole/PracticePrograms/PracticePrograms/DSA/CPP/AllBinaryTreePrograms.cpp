@@ -52,6 +52,45 @@ vector<int> levelOrder(Node* root)
         return maxi;
         
     }
+ //https://www.geeksforgeeks.org/problems/zigzag-tree-traversal/1
+ vector <int> zigZagTraversal(Node* root)
+    {
+    	queue<Node*> q;
+    	q.push(root);
+    	vector<int> ans,level;
+    	int odd=true;
+    	while(!q.empty())
+    	{
+    	    int size=q.size();
+    	    level.clear();
+    	    while(size-->0)
+    	    {
+    	        Node* front = q.front();
+    	        level.push_back(front->data);
+    	        q.pop();
+    	        if(front->left)
+    	          q.push(front->left);
+    	        if(front->right)
+    	          q.push(front->right);
+    	    }
+    	    if(odd)
+    	    {
+    	        for(int i=0;i<level.size();i++)
+    	        {
+    	            ans.push_back(level[i]);
+    	        }
+    	        odd=false;
+    	    }else{
+    	        
+    	        for(int i=level.size()-1;i>=0;i--)
+    	        {
+    	            ans.push_back(level[i]);
+    	        }
+    	        odd=true;
+    	    }
+    	}
+    	return ans;
+    }
 int main()
 {
 	return 0;
