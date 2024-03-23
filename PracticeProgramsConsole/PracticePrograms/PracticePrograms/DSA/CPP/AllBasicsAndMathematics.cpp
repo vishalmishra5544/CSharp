@@ -127,6 +127,94 @@ int isPowerOfAnother(long long x, long long y){
      int nthTermOfAP(int a1, int a2, int n) {
         return a1+(n-1)*(a2-a1);
     }
+//https://www.geeksforgeeks.org/problems/fibonacci-series-up-to-nth-term/1
+    const long long int mod=1e9+7;
+    vector<int> Series(int n) {
+        // Code here
+        long long int first=0,second=1,current;
+        vector<int> ans;
+        ans.push_back(first);
+        ans.push_back(second);
+        for(int i=2;i<=n;i++)
+        {
+            current=(second%mod+first%mod)%mod;
+            ans.push_back(current);
+            first=second;
+            second=current;
+        }
+        return ans;
+    }
+//https://www.geeksforgeeks.org/problems/product-of-primes5328/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
+    const long long mod=1e9+7;
+    long long primeProduct(long long L, long long R){
+        // code here
+        vector<bool> sieve=getSegmentedSieve(L,R);
+        long long ans=1;
+        for(int prime=0;prime<sieve.size();prime++)
+        {
+            if(sieve[prime]==true)
+            {
+                // cout<<prime+L<<" ";
+                ans=(ans*((prime%mod+L%mod)%mod))%mod;
+            }
+        }
+        return ans;
+    }
+    vector<bool> getSegmentedSieve(long long L,long long R)
+    {
+        vector<bool> basicSieve = getSieve(sqrt(R));
+        vector<bool> segmentedSieve(R-L+1,true);
+        if(L==0){
+          segmentedSieve[L-1]=false;
+          segmentedSieve[L]=false;
+        }
+        if(L==1){
+          segmentedSieve[L-1]=false;
+        }
+        for(long long int prime=2;prime<basicSieve.size();prime++)
+        {
+            if(basicSieve[prime]==true){
+                long long int firstMul =(L/prime)*prime;
+                if(firstMul<L)
+                  firstMul+=prime;
+                long long int firstToBeMarked = max(prime*prime,firstMul);
+                long long int j=firstToBeMarked-L;
+                // cout<<prime<<" "<<firstToBeMarked<<" "<<j<<" -";
+                while(j<R-L+1)
+                {
+                    segmentedSieve[j]=false;
+                    j+=prime;
+                    // cout<<"*"<<j<<" ";
+                }
+            }
+        }
+        // cout<<endl;
+        // for(auto p:segmentedSieve)
+        //  cout<<p<<" ";
+        // cout<<endl;
+        return segmentedSieve;
+    }
+    vector<bool> getSieve(long long n)
+    {
+        vector<bool> sieve(n+1,true);
+        sieve[0]=sieve[1]=false;
+        for(long long i=2;i*i<=n;i++)
+        {
+            if(sieve[i]==true)
+            {
+                long long j=i*i;
+                while(j<=n)
+                {
+                    sieve[j]=false;
+                    j+=i;
+                }
+            }
+        }
+        // for(auto e:sieve)
+        //   cout<<e<<" ";
+        // cout<<endl;
+        return sieve;
+    }
  int main()
 {
     return 0;
