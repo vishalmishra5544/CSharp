@@ -215,6 +215,15 @@ int isPowerOfAnother(long long x, long long y){
         // cout<<endl;
         return sieve;
     }
+//https://www.geeksforgeeks.org/problems/sum-of-all-divisors-from-1-to-n4738/1?page=8&difficulty=Easy&sortBy=submissions
+long long sumOfDivisors(int N)//use contribution method ( contribution of a divisor 'i' in sum upto N numbers= (N/i)*i)
+    {
+       long long ans = 0;
+        for(int i = 1; i<=N; i++) {
+            ans += (N/i)*i;            //getting no. of times (frequency) of divisor of a number by N/i
+        }
+        return ans;
+    }
  int main()
 {
     return 0;
