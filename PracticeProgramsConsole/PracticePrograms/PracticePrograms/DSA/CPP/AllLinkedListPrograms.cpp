@@ -291,6 +291,31 @@ void reverselist(Node *&head)
         }
         return pair;
     }
+//https://www.geeksforgeeks.org/problems/find-the-sum-of-last-n-nodes-of-the-linked-list/1?page=1&difficulty=Basic&status=unsolved&sortBy=submissions
+int sumOfLastN_Nodes(struct Node* head, int n)
+{
+      if(head==NULL)
+       return 0;
+      Node* s=head;
+      Node* f=head;
+      int ans=0;
+      while(n-->1)
+      {
+          f=f->next;
+      }
+      while(f->next!=NULL)
+      {
+          s=s->next;
+          f=f->next;
+      }
+      while(s!=f)
+      {
+          ans+=s->data;
+          s=s->next;
+      }
+      ans+=f->data;
+      return ans;
+}
 int main()
 {
     return 0;
