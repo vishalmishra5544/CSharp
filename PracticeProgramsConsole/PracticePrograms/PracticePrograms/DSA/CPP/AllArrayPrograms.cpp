@@ -159,6 +159,20 @@ string findSum(string X, string Y) {
     }
     return -1;
 }
+//https://www.geeksforgeeks.org/problems/smallest-sum-contiguous-subarray/1?page=4&category=Arrays&sprint=94ade6723438d94ecf0c00c3937dad55&sortBy=submissions
+int smallestSumSubarray(vector<int>& a){
+      for(auto &ele:a)
+       ele=ele*(-1);
+      int currSum=0,ans=INT_MIN;
+      for(int i=0;i<a.size();i++)
+      {
+          currSum+=a[i];
+          ans=max(ans,currSum);
+          if(currSum<0)
+            currSum=0;
+      }
+      return ans*(-1);
+  }
 int main()
 {
     string ans =findSum("25","23");
