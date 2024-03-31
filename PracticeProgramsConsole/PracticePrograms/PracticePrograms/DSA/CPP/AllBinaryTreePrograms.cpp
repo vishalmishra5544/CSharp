@@ -119,6 +119,29 @@ vector<int> diagonalSum(Node* root) {
         }
         return v;
     }
+//https://www.geeksforgeeks.org/problems/closest-neighbor-in-bst/1
+int findMaxForN(Node* root, int n) {
+        int ans=INT_MIN;
+        searchClosestNeighbourInBST(root,n,ans);
+        return ans==INT_MIN?-1:ans;
+    }
+    void searchClosestNeighbourInBST(Node* root,int& n,int& ans)
+    {
+        if(root==NULL)
+         return;
+        if(root->key==n)
+        {
+          ans=root->key;
+          return;
+        }
+        if(root->key<n)
+        {
+          ans=max(ans,root->key);
+          searchClosestNeighbourInBST(root->right,n,ans);
+        }
+        else
+         searchClosestNeighbourInBST(root->left,n,ans);
+    }
 int main()
 {
 	return 0;
