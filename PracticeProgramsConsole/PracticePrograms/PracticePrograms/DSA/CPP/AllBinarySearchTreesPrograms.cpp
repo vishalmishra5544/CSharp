@@ -85,6 +85,52 @@ int ans=0;
         solve(root,temp_last_node,diff);
         return diff;
     }
+//https://www.geeksforgeeks.org/problems/kth-common-ancestor-in-bst/1
+/*
+Implementation
+LCA Function (Lowest Common Ancestor):
+This function recursively finds the Lowest Common Ancestor (LCA) of two nodes x and y in the BST.
+It takes the root of the current subtree and the values of nodes x and y as input.
+If both x and y are smaller than the current node's value, it recursively searches for the LCA in the left subtree.
+If both x and y are greater than the current node's value, it recursively searches for the LCA in the right subtree.
+If neither of the above conditions is true, it means the current node is the LCA, and it returns the node.
+pathToNode Function:
+This function constructs the path from the root to a given node.
+It takes the root of the current subtree, the target node, and a vector to store the path as input.
+It recursively traverses the tree until it finds the target node.
+During traversal, it adds the value of each visited node to the path vector.
+Once the target node is found, it stops recursion and returns.
+kthCommonAncestor Function:
+This function calculates the kth common ancestor of nodes x and y.
+It first finds the LCA of nodes x and y using the LCA function.
+Then, it constructs the path from the root to the LCA using the pathToNode function.
+Since the path is constructed from the root to the LCA, the kth common ancestor will be the (k-1)th element from the end of the path.
+If the path size is less than k, it means there are not enough ancestors, so it returns -1.
+Otherwise, it returns the (k-1)th element from the end of the path.
+
+*/
+void solve(Node *root, int k, int x, int y, vector<int> &ans){
+        if(!root) return;
+        
+        ans.push_back(root -> data);
+        if(root -> data < x && root -> data < y){
+            solve(root -> right, k, x, y, ans);
+        }else if(root -> data > x && root -> data > y){
+            solve(root -> left, k, x, y, ans);
+        }
+        
+        return;
+    }
+    int kthCommonAncestor(Node *root, int k,int x, int y)
+    {
+        vector<int> ans;
+        solve(root, k, x, y, ans);
+        
+        int n = ans.size();
+        if(n < k) return -1;
+        
+        return ans[n - k];
+    }
 int main()
 {
 	return 0;
