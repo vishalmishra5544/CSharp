@@ -97,6 +97,23 @@ int solve(int i, int j, int n, int m, int a[], int b[], vector<vector<int>> &dp)
     int take = a[i] * b[j] + solve(i + 1, j + 1, n, m, a, b, dp);
     return dp[i][j] = max(no_take, take);
 }
+
+//https://www.geeksforgeeks.org/problems/optimal-strategy-for-a-game-1587115620/1
+long long maximumAmount(int n, int arr[]){
+        
+      vector<vector<int>> dp(n+1,vector<int> (n+1,-1));
+      return recMemo(arr,n,0,n-1,dp);
+        
+    }
+    
+    long long recMemo(int arr[],int n,int i,int j,vector<vector<int>> &dp){
+        if(i==j) return arr[i];
+        if(i+1==j) return max(arr[i],arr[j]);
+        if(dp[i][j]!=-1) return dp[i][j];
+        long long int choiceI=arr[i]+min(recMemo(arr,n,i+2,j,dp),recMemo(arr,n,i+1,j-1,dp));
+        long long int choiceJ=arr[j]+min(recMemo(arr,n,i+1,j-1,dp),recMemo(arr,n,i,j-2,dp));
+        return dp[i][j]=max(choiceI,choiceJ);
+    }
 int main()
 {
     vector<vector<int>> mat(5,vector<int> (5,1));
