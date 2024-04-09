@@ -114,6 +114,26 @@ long long maximumAmount(int n, int arr[]){
         long long int choiceJ=arr[j]+min(recMemo(arr,n,i+1,j-1,dp),recMemo(arr,n,i,j-2,dp));
         return dp[i][j]=max(choiceI,choiceJ);
     }
+//https://www.geeksforgeeks.org/problems/minimum-points-to-reach-destination0540/1
+int solve(int i, int j, int m, int n, vector<vector<int>> &points, vector<vector<int>> &dp)
+    {
+         
+        if(i == m-1 && j == n-1)
+            return 1 - points[i][j];
+        if(i == m || j == n)
+            return INT_MAX;
+        if(dp[i][j] != -1)
+            return dp[i][j];
+        int right = solve(i+1, j, m, n, points, dp);
+        int left  = solve(i, j+1, m, n, points, dp);
+        return dp[i][j] = max(1, min(right, left) - points[i][j]);
+        
+    }
+    int minPoints(int m, int n, vector<vector<int>> points) 
+    { 
+        vector<vector<int>> dp(m, vector<int>(n,-1));
+        return solve(0, 0, m, n, points, dp);
+    } 
 int main()
 {
     vector<vector<int>> mat(5,vector<int> (5,1));
