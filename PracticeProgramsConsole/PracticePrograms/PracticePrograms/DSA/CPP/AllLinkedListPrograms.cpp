@@ -316,6 +316,40 @@ int sumOfLastN_Nodes(struct Node* head, int n)
       ans+=f->data;
       return ans;
 }
+//https://leetcode.com/problems/add-two-numbers/
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* l3=new ListNode();
+        ListNode* temp=l3;
+        ll carry=0;
+        while(l1 || l2 || carry){
+            if(l1 && l2){
+                temp->val=(l1->val+l2->val+carry)%10;
+                carry=(l1->val+l2->val+carry)/10;
+                l1=l1->next;
+                l2=l2->next;
+            }
+            else if(l1){
+                temp->val=(l1->val+carry)%10;
+                carry=(l1->val+carry)/10;
+                l1=l1->next;
+            }
+            else if(l2){
+                temp->val=(l2->val+carry)%10;
+                carry=(l2->val+carry)/10;
+                l2=l2->next;
+            }
+            else{
+                temp->val=carry;
+                carry=0;
+            }
+            
+            if(l1 || l2 || carry){
+                temp->next=new ListNode();
+                temp=temp->next;
+            }
+        }
+        return l3;
+    }
 int main()
 {
     return 0;
