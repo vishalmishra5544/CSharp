@@ -173,6 +173,30 @@ int smallestSumSubarray(vector<int>& a){
       }
       return ans*(-1);
   }
+
+  //https://www.geeksforgeeks.org/problems/reverse-bits3556/1
+long long reversedBits(long long x) {
+        // code here
+        vector<int>  arr(32,0);
+        int end=31;
+        while(x>0)
+        {
+            if(x%2==0)
+              arr[end]=0;
+            else
+              arr[end]=1;
+            x/=2;
+            end--;
+        }
+        long long int ans=0;
+        for(int i=31;i>=0;i--)
+        {
+           //cout<<arr[i]<<" ";
+           ans+=(arr[i]*pow(2,i));
+            
+        }
+        return ans;
+    }
 int main()
 {
     string ans =findSum("25","23");
