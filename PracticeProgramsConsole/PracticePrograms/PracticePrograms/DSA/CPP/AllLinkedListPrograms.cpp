@@ -350,6 +350,28 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         }
         return l3;
     }
+//https://www.geeksforgeeks.org/problems/find-nk-th-node-in-linked-list/1?page=1&difficulty=Basic&status=unsolved&sortBy=submissions
+int fractional_node(struct Node *head, int k)
+{
+    // your code here
+    Node *slow=NULL,*fast=head;
+    int i=0;
+    while(fast!=NULL)
+    {
+       if(i%k==0)
+       {
+           if(slow==NULL)
+             slow=head;
+           else
+             slow=slow->next;
+           // cout<<slow->data<<" "<<i<<" ";
+       }
+       fast=fast->next;
+       i++;
+    }
+    return slow->data;
+    
+}
 int main()
 {
     return 0;
