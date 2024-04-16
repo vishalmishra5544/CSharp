@@ -197,6 +197,43 @@ long long reversedBits(long long x) {
         }
         return ans;
     }
+//https://www.geeksforgeeks.org/problems/minimize-the-difference/1
+int minimizeDifference(int n, int k, vector<int>& arr) {
+        // Arrays to store maximum and minimum elements from a certain position
+        vector<int> post_max(n);
+        vector<int> post_min(n);
+
+        // Initializing the maximum and minimum elements from the last position
+        post_min[n - 1] = arr[n - 1];
+        post_max[n - 1] = arr[n - 1];
+
+        // Loop to update the maximum and minimum elements from each position
+        for (int i = n - 2; i >= 0; --i) {
+            post_max[i] = max(arr[i], post_max[i + 1]);
+            post_min[i] = min(arr[i], post_min[i + 1]);
+        }
+
+        // Initializing the minimum difference with elements at k
+        int min_diff = post_max[k] - post_min[k];
+
+        // Initializing variables to keep track of current minimum and maximum elements
+        int p_min = arr[0];
+        int p_max = arr[0];
+
+        // Loop to update the minimum difference by considering each window of size k
+        for (int i = 1; i < n - k; ++i) {
+            int curr_min = max(p_max, post_max[i + k]) - min(p_min, post_min[i + k]);
+            min_diff = min(min_diff, curr_min);
+            p_max = max(arr[i], p_max);
+            p_min = min(arr[i], p_min);
+        }
+
+        // Updating the minimum difference considering the remaining elements
+        min_diff = min(min_diff, p_max - p_min);
+
+        // Returning the final minimized difference
+        return min_diff;
+    }
 int main()
 {
     string ans =findSum("25","23");
