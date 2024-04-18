@@ -234,6 +234,26 @@ int minimizeDifference(int n, int k, vector<int>& arr) {
         // Returning the final minimized difference
         return min_diff;
     }
+//https://www.geeksforgeeks.org/problems/two-repeated-elements-1587115621/1
+//Function to find two repeated elements.
+    vector<int> twoRepeated (int arr[], int n) {
+        // Your code here
+         int maxi = n+1;
+        vector<int> ans;
+
+        for(int i = 0;i<n+2;i++){
+            
+            int ind = arr[i]%maxi;
+            
+            arr[ind-1] += maxi;
+            
+            if((arr[ind-1]/maxi)==2)
+                ans.push_back(ind);
+            
+        }
+
+        return ans;
+    }
 int main()
 {
     string ans =findSum("25","23");
