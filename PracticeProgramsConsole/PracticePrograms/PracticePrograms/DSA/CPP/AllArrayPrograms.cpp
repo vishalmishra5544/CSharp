@@ -254,6 +254,22 @@ int minimizeDifference(int n, int k, vector<int>& arr) {
 
         return ans;
     }
+//https://www.geeksforgeeks.org/problems/in-first-but-second5423/1
+vector<int> findMissing(int a[], int b[], int n, int m) 
+	{ 
+	    unordered_set<int> h;
+	    vector<int> ans;
+	    for(int i=0;i<m;i++)
+	      h.insert(b[i]);
+	    for(int i=0;i<n;i++)
+	    {
+	        if(h.find(a[i])==h.end())
+	        {
+	            ans.push_back(a[i]);
+	        }
+	    }
+	    return ans;
+	} 
 int main()
 {
     string ans =findSum("25","23");
