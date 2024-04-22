@@ -270,6 +270,24 @@ vector<int> findMissing(int a[], int b[], int n, int m)
 	    }
 	    return ans;
 	} 
+//https://www.geeksforgeeks.org/problems/row-with-minimum-number-of-1s5430/1
+int minRow(int n, int m, vector<vector<int>> a) {
+        // code here
+        int minInd=INT_MAX,mini=INT_MAX,currSum=0;
+        for(int i=0;i<n;i++)
+        {
+            currSum=0;
+            for(int j=0;j<m;j++)
+              currSum+=a[i][j];
+            if(mini>currSum)
+            {
+                mini=currSum;
+                minInd=i;
+            }
+            //cout<<i<<" "<<mini<<endl;
+        }
+        return minInd+1;
+    }
 int main()
 {
     string ans =findSum("25","23");
