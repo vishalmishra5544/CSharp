@@ -134,6 +134,64 @@ int solve(int i, int j, int m, int n, vector<vector<int>> &points, vector<vector
         vector<vector<int>> dp(m, vector<int>(n,-1));
         return solve(0, 0, m, n, points, dp);
     } 
+//https://www.geeksforgeeks.org/problems/paths-to-reach-origin3850/1
+ int mod=1e9+7;
+    int ways(int x, int y)
+    {
+        //return recursion(x,y);
+        // vector<vector<int>> dp(x+1,vector<int> (y+1,-1));
+        // return recursionMemo(x,y,dp);
+        vector<vector<int>> dp(x+1,vector<int>(y+1,0));
+        return recursionDp(x,y,dp);
+    }
+    
+    int recursion(int x,int y)
+    {
+       //cout<<x<<" "<<y<<" "<<ans<<endl;
+       if(x<0 || y<0)
+       {
+           return 0;
+       }
+       if(x+y==0)
+       {
+         return 1; 
+       }
+       return recursion(x,y-1)+recursion(x-1,y);
+    }
+    
+    int recursionMemo(int x,int y,vector<vector<int>> &dp)
+    {
+       if(x<0 || y<0)
+       {
+           return 0;
+       }
+       if(x+y==0)
+       {
+         return 1; 
+       }
+       if(dp[x][y]!=-1)
+         return dp[x][y];
+      return dp[x][y]=(recursionMemo(x,y-1,dp) % mod+recursionMemo(x-1,y,dp) % mod) % mod;
+
+    }
+    int recursionDp(int x,int y,vector<vector<int>> &dp)
+    {
+        for(int i=1;i<=x;i++)
+          dp[i][0]=1;
+
+        for(int j=1;j<=y;j++)
+          dp[0][j]=1;
+          
+        dp[0][0]=0;
+        for(int i=1;i<=x;i++)
+        {
+            for(int j=1;j<=y;j++)
+            {
+               dp[i][j]=(dp[i][j-1] % mod+dp[i-1][j] % mod) % mod;
+            }
+        }
+        return dp[x][y];
+    }
 int main()
 {
     vector<vector<int>> mat(5,vector<int> (5,1));
