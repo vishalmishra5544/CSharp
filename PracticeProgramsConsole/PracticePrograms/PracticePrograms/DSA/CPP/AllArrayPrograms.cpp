@@ -300,6 +300,20 @@ int firstElement(int n) {
         }
         return b;
     }
+//https://www.geeksforgeeks.org/problems/maximum-sum-of-hour-glass3842/1
+int findMaxSum(int n, int m, vector<vector<int>> mat) {
+        // code here
+        int maxi=INT_MIN,sum=0;
+        for(int i=0;i<=n-3;i++)
+        {
+            for(int j=0;j<=m-3;j++)
+            {
+                sum=mat[i][j]+mat[i][j+1]+mat[i][j+2]+mat[i+1][j+1]+mat[i+2][j]+mat[i+2][j+1]+mat[i+2][j+2];
+                maxi=max(maxi,sum);
+            }
+        }
+        return maxi==INT_MIN?-1:maxi;
+    }
 int main()
 {
     string ans =findSum("25","23");
