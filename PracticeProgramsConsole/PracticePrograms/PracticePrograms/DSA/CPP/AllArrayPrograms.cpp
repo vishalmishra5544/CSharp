@@ -314,6 +314,75 @@ int findMaxSum(int n, int m, vector<vector<int>> mat) {
         }
         return maxi==INT_MIN?-1:maxi;
     }
+//https://www.geeksforgeeks.org/problems/exit-point-in-a-matrix0905/1
+vector<int> FindExitPoint(int n, int m, vector<vector<int>>& matrix) {
+        char dir='R';
+        int i=0,j=0;
+        while(i>=0&&i<n&&j>=0&&j<m)
+        {
+           // cout<<matrix[i][j]<<" "<<i<<" "<<j<<endl;
+            if(matrix[i][j]==1)
+            {
+                matrix[i][j]=0;
+                switch(dir)
+                {
+                    case 'R':
+                       dir='D';
+                       i++;
+                       break;
+                    case 'L':
+                       dir='U';
+                       i--;
+                       break;
+                    case 'U':
+                       dir='R';
+                       j++;
+                       break;
+                    case 'D':
+                       dir='L';
+                       j--;
+                       break;
+                }
+                
+            }
+            else
+            {
+                switch(dir)
+                {
+                    case 'R':
+                       j++;
+                       break;
+                    case 'L':
+                       j--;
+                       break;
+                    case 'U':
+                       i--;
+                       break;
+                    case 'D':
+                       i++;
+                       break;
+                }
+            }
+            
+        }
+        
+        switch(dir)
+        {
+            case 'R':
+               j=j-1;
+               break;
+            case 'L':
+               j=j+1;
+               break;
+            case 'U':
+               i=i+1;
+               break;
+            case 'D':
+               i=i-1;
+               break;
+        }
+        return {i,j};
+    }
 int main()
 {
     string ans =findSum("25","23");
