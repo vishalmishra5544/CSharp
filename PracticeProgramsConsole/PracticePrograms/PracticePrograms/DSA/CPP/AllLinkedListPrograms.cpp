@@ -372,6 +372,79 @@ int fractional_node(struct Node *head, int k)
     return slow->data;
     
 }
+
+//https://www.geeksforgeeks.org/problems/merge-sort-on-doubly-linked-list/1
+// Function to sort the given doubly linked list using Merge Sort.
+    struct Node *sortDoubly(struct Node *head) {
+        // Your code here
+        return mergeSortDoublyLL(head);
+    }
+    
+    Node * mergeSortDoublyLL(Node * head)
+    {
+        if(head==NULL||head->next==NULL)
+          return head;
+        //mid
+        Node* mid=getMid(head);
+        Node* head2=mid->next;
+        head2->prev=NULL;
+        mid->next=NULL;
+        head=mergeSortDoublyLL(head);
+        head2=mergeSortDoublyLL(head2);
+        return merge(head,head2);
+    }
+    Node* getMid(Node* head)
+    {
+        if(head==NULL || head->next==NULL)
+         return head;
+        Node* fast=head->next,*slow=head;
+        while(fast&&fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+    Node* merge(Node* head1,Node *head2)
+    {
+        if(head1==NULL)
+          return head2;
+        if(head2==NULL)
+          return head1;
+        Node *h=new Node(-1),*head=h;
+        while(head1&&head2)
+        {
+            if(head1->data<head2->data)
+            {
+                head->next=head1;
+                head1->prev=head;
+                head=head->next;
+                head1=head1->next;
+            }
+            else
+            {
+                head->next=head2;
+                head2->prev=head;
+                head=head->next;
+                head2=head2->next;
+            }
+        }
+        if(head1)
+        {
+           head->next=head1;
+           head1->prev=head;
+        }
+        if(head2)
+        {
+            head->next=head2;
+            head2->prev=head;
+        }
+        head=h->next;
+        head->prev=NULL;
+        h->next=NULL;
+        delete h;
+        return head;
+    }
 int main()
 {
     return 0;
