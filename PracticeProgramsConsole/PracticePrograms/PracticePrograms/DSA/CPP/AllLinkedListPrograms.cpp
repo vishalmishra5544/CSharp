@@ -445,6 +445,37 @@ int fractional_node(struct Node *head, int k)
         delete h;
         return head;
     }
+ //https://www.geeksforgeeks.org/problems/delete-middle-of-linked-list/1
+  Node* deleteMid(Node* head)
+    {
+        if(head==NULL)
+          return head;
+        if(head->next==NULL)
+        {
+            delete head;
+            return NULL;
+        }
+        Node* slow=head,*fast=head->next;
+        while(fast&&fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        if(fast&&fast->next==NULL)//even
+        {
+            fast=slow->next;
+            slow->next=slow->next->next;
+            delete fast;
+        }  
+        else//odd
+        {
+            fast=slow->next;
+            slow->data=slow->next->data;
+            slow->next=slow->next->next;
+            delete fast;
+        }
+        return head;
+    }
 int main()
 {
     return 0;
