@@ -476,6 +476,39 @@ int fractional_node(struct Node *head, int k)
         }
         return head;
     }
+//https://www.geeksforgeeks.org/problems/remove-every-kth-node/1
+Node* deleteK(Node *head,int K){
+      Node *h=head;
+      if(K==1)
+      {
+          while(h)
+          {
+              Node *t=h;
+              h=h->next;
+              delete t;
+          }
+          return head=NULL;
+      }
+      int count=1;
+      while(h)
+      {
+          while(h&&count<K-1)
+          {
+            h=h->next;
+            count++; 
+          }
+          if(h&&h->next&&count==K-1)
+          {
+            Node *t=h->next;
+            h->next=t->next;
+            delete t;
+            h=h->next;
+            count=1;
+          }
+          else return head;
+      }
+      return head;
+    }
 int main()
 {
     return 0;
