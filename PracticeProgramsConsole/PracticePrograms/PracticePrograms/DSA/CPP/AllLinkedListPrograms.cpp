@@ -509,6 +509,86 @@ Node* deleteK(Node *head,int K){
       }
       return head;
     }
+//https://www.geeksforgeeks.org/problems/add-two-numbers-represented-by-linked-lists/1
+struct Node* addTwoLists(struct Node* num1, struct Node* num2)
+    {
+        if(num1==NULL||num2==NULL)
+         return NULL;
+        Node* n1=reverse(trimZero(num1));
+        
+        Node* n2=reverse(trimZero(num2));
+        if(n1==NULL&&n2==NULL)
+         return new Node(0);
+        Node* head=new Node(-1);
+        Node* ans=head;
+        int carry=0,sum=0;
+        while(n1&&n2)
+        {
+            sum=(n1->data+n2->data+carry)%10;
+            carry=(n1->data+n2->data+carry)/10;
+            head->next=new Node(sum);
+            head=head->next;
+            n1=n1->next;
+            n2=n2->next;
+        }
+        while(n1)
+        {
+            sum=(n1->data+carry)%10;
+            carry=(n1->data+carry)/10;
+            head->next=new Node(sum);
+            head=head->next;
+            n1=n1->next;
+        }
+        while(n2)
+        {
+            sum=(n2->data+carry)%10;
+            carry=(n2->data+carry)/10;
+            head->next=new Node(sum);
+            head=head->next;
+            n2=n2->next;
+        }
+        while(carry)
+        {
+            sum=carry%10;
+            carry=carry/10;
+            head->next=new Node(sum);
+            head=head->next;
+        }
+        Node *t=ans;
+        ans=ans->next;
+        delete t;
+        return reverse(ans);
+    }
+    Node * trimZero(Node* head)
+    {
+        while(head&&head->data==0)
+        {
+            Node* t=head;
+            head=head->next;
+            delete t;
+        }
+        return head;
+    }
+    Node* reverse(Node* head)
+    {
+        Node* curr=head,*prev=NULL,*next=NULL;
+        while(curr)
+        {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+    void print(Node * head)
+    {
+        while(head!=NULL)
+        {
+            cout<<head->data<<" ";
+            head=head->next;
+        }
+    }
 int main()
 {
     return 0;
