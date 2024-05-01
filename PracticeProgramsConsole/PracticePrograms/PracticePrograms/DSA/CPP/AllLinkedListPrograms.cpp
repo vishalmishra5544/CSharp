@@ -589,6 +589,62 @@ struct Node* addTwoLists(struct Node* num1, struct Node* num2)
             head=head->next;
         }
     }
+//https://www.geeksforgeeks.org/problems/arrange-consonants-and-vowels/1
+struct Node* arrangeCV(Node* head) {
+        // Code here
+        unordered_set<char> vowelSet={'a','e','i','o','u'};
+        Node* vowel=NULL,*consonant=NULL,*h=head;
+        Node* v=NULL,*c=NULL;
+        while(h)
+        {
+            if(vowelSet.find(h->data)!=vowelSet.end())
+            {
+               if(vowel==NULL)
+               {
+                   vowel=h;
+                   v=vowel;
+               }
+               else
+               {
+                 vowel->next=h;
+                 vowel=vowel->next;
+               }
+            }
+            else
+            {
+                if(consonant==NULL)
+                {
+                    consonant=h;
+                    c=consonant;
+                }
+                else
+                {
+                    consonant->next=h;
+                    consonant=consonant->next;
+                }
+            }
+            h=h->next;
+        }
+        if(consonant)
+            consonant->next=NULL;
+        if(vowel)
+        {
+            vowel->next=c;
+            return v;
+        }
+        else
+        {
+            return c;
+        }
+    }
+    void print(Node* h)
+    {
+        while(h)
+        {
+            cout<<h->data<<" ";
+            h=h->next;
+        }
+    }
 int main()
 {
     return 0;
