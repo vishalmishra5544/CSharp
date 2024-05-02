@@ -169,6 +169,112 @@ int getCount(Node *root, int k) {
 
         return cnt;
     }
+ //https://www.geeksforgeeks.org/problems/serialize-and-deserialize-a-binary-tree/1
+//m1-
+//Function to serialize a tree and return a list containing nodes of tree.
+    vector<int> serialize(Node *root) 
+    {
+        //Your code here
+        vector<int> ans;
+        if(root==NULL)return ans;
+        queue<Node*> q;
+        q.push(root);
+        ans.push_back(root->data);
+        while(!q.empty()){
+           int count=q.size();
+           while(count>0){
+               Node* curr=q.front();
+               q.pop();
+               if(curr->left){ ans.push_back(curr->left->data);q.push(curr->left);}
+               else ans.push_back(-100);
+               if(curr->right){ ans.push_back(curr->right->data);q.push(curr->right);}
+               else ans.push_back(-100);
+               count--;
+           }
+        }
+        return ans;
+    }
+    
+    //Function to deserialize a list and construct the tree.
+    Node * deSerialize(vector<int> &A)
+    {
+       //Your code here
+       if(A.size()==0)return NULL;
+       int i=0;
+       Node* root=new Node(A[i]);
+       queue<Node*>q;
+       q.push(root);
+       i++;
+       while(!q.empty()){
+           int count=q.size();
+           while(count>0){
+               Node* curr=q.front();
+               q.pop();
+               if(A[i]!=-100){Node* n=new Node(A[i]);curr->left=n;q.push(n);}
+               //else curr->left=NULL;
+               i++;
+               if(A[i]!=-100){curr->right=new Node(A[i]);q.push(curr->right);}
+               //else curr->right=NULL;
+               i++;
+               count--;
+           }
+       }
+       return root;
+    }
+//m2-
+  //Function to store the nodes of tree in the list.
+    void serializeUtil(Node*root, vector<int>&a)
+    {
+        //base case if node is null.
+        if (root == NULL) {
+            a.push_back(-1);
+            return;
+        }
+        //storing the data at node in list.
+        a.push_back(root->data);
+        
+        //calling function recursively for left and right subtrees.
+        serializeUtil(root->left, a);
+        serializeUtil(root->right, a);
+    }
+    
+    //Function to serialize a tree and return a list containing nodes of tree.
+    vector<int> serialize(Node *root)
+    {
+        vector<int> serialized;
+        serializeUtil(root,serialized);
+        
+        //returning the list.
+        return serialized;
+    }
+    
+    
+    //Function to construct the tree.
+    Node *kewl(vector<int> &a, int *index) 
+    {
+        //base case if there are no more elements in list.
+        if (*index == a.size() or a[*index] == -1) {
+            *index += 1;
+            return NULL;
+        }
+        
+        //creating new node for storing current element.
+        Node *root = new Node(a[*index]);
+        *index += 1;
+        
+        //calling function recursively for left and right subtrees. 
+        root->left = kewl(a, index);
+        root->right = kewl(a, index);
+        return root;
+    }
+    
+    //Function to deserialize a list and construct the tree.
+    Node *deSerialize(vector<int> &a) 
+    {
+        int index = 0;
+        //returning the tree.
+        return kewl(a, &index);
+    }
 int main()
 {
 	return 0;
