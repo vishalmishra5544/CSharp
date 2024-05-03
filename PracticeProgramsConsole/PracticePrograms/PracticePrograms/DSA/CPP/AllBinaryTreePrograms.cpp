@@ -275,6 +275,33 @@ int getCount(Node *root, int k) {
         //returning the tree.
         return kewl(a, &index);
     }
+//https://www.geeksforgeeks.org/problems/k-distance-from-root/1
+ // function should print the nodes at k distance from root
+    vector<int> Kdistance(struct Node *root, int k)
+    {
+       queue<Node*> q;
+       q.push(root);
+       int size;
+       vector<int> ans;
+       while(!q.empty()&&k>=0)
+       {
+           size=q.size();
+           while(size--)
+           {
+               Node* front=q.front();
+               q.pop();
+               if(k==0)
+                    ans.push_back(front->data);
+               if(front->left)
+                   q.push(front->left);
+               
+               if(front->right)
+                q.push(front->right);
+           }
+           k--;
+       }
+       return ans;
+    }
 int main()
 {
 	return 0;
