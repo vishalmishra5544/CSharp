@@ -302,6 +302,34 @@ int getCount(Node *root, int k) {
        }
        return ans;
     }
+ //https://www.geeksforgeeks.org/problems/tree-from-postorder-and-inorder/1
+ //Function to return a tree created from postorder and inoreder traversals.
+    Node *buildTree(int in[], int post[], int n) {
+     // Base case: If no nodes, return nullptr
+        if (n == 0) {
+            return nullptr;
+        }
+
+        // Find the root node index in inorder traversal
+        int rootIndex = 0;
+        while (rootIndex < n && in[rootIndex] != post[n - 1]) {
+            rootIndex++;
+        }
+
+        // Create the root node with the value from postorder traversal
+        Node* root = new Node(post[n - 1]);
+
+        // Recursively build left subtree using elements before root in inorder traversal
+        root->left = buildTree(in, post, rootIndex);
+
+        // Recursively build right subtree using elements after root in inorder traversal
+        root->right = buildTree(in + rootIndex + 1, post + rootIndex, n - rootIndex - 1);
+        
+
+        return root;
+    
+    
+    }
 int main()
 {
 	return 0;
