@@ -326,9 +326,32 @@ int getCount(Node *root, int k) {
         root->right = buildTree(in + rootIndex + 1, post + rootIndex, n - rootIndex - 1);
         
 
-        return root;
-    
-    
+        return root;    
+    }
+//https://www.geeksforgeeks.org/problems/vertical-sum/1
+vector <int> verticalSum(Node *root) {
+        queue<pair<Node*,int>> q;
+        q.push({root,0});
+        map<int,int> h;
+        vector<int> ans;
+        while(!q.empty())
+        {
+            auto front=q.front();
+            q.pop();
+            h[front.second]+=front.first->data;
+            if(front.first->left)
+            {
+                q.push({front.first->left,front.second-1});
+            }
+            if(front.first->right)
+            {
+                q.push({front.first->right,front.second+1});
+            }
+        }
+        for(auto &ele:h)
+          ans.push_back(ele.second);
+        return ans;
+        
     }
 int main()
 {
