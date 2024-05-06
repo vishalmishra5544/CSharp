@@ -353,6 +353,31 @@ vector <int> verticalSum(Node *root) {
         return ans;
         
     }
+//https://www.geeksforgeeks.org/problems/print-all-nodes-that-dont-have-sibling/1
+void preOrder(Node* root,vector<int>& ans)
+{
+    if(root==NULL)
+     return;
+    if(root->left&&!root->right)
+    {
+        ans.push_back(root->left->data);
+    }
+    if(!root->left&&root->right)
+    {
+        ans.push_back(root->right->data);
+    }
+    preOrder(root->left,ans);
+    preOrder(root->right,ans);
+}
+vector<int> noSibling(Node* node)
+{
+    vector<int> ans;
+    preOrder(node,ans);
+    if(ans.size()==0)
+      ans.push_back(-1);
+    sort(ans.begin(),ans.end());
+    return ans;
+}
 int main()
 {
 	return 0;
