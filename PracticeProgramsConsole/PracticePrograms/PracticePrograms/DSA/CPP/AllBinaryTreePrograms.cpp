@@ -378,6 +378,31 @@ vector<int> noSibling(Node* node)
     sort(ans.begin(),ans.end());
     return ans;
 }
+//https://www.geeksforgeeks.org/problems/reverse-level-order-traversal/1
+vector<int> reverseLevelOrder(Node *root)
+{
+    // code here
+    deque<int> dq;
+    queue<Node*> q;
+    q.push(root);
+    while(q.empty()!=true){
+        int size=q.size();
+        vector<int> ans;
+        for(int i=0;i<size;i++){
+            Node* front=q.front();
+            q.pop();
+            ans.push_back(front->data);
+            if(front->left) q.push(front->left);
+            if(front->right) q.push(front->right);
+        }
+        for(auto i=ans.rbegin();i!=ans.rend();i++){
+            dq.push_front(*i);
+        }
+    }
+    vector<int> res;
+    for(auto i:dq)res.push_back(i); 
+    return res;
+}
 int main()
 {
 	return 0;
