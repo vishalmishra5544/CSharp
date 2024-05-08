@@ -403,6 +403,29 @@ vector<int> reverseLevelOrder(Node *root)
     for(auto i:dq)res.push_back(i); 
     return res;
 }
+//https://www.geeksforgeeks.org/problems/root-to-leaf-paths/1
+vector<vector<int>> Paths(Node* root) {
+        vector<vector<int>> ans;
+        vector<int> currPath;
+        findAllPathsToLeafNodes(root,ans,currPath);
+        return ans;
+}
+void findAllPathsToLeafNodes(Node* root,vector<vector<int>>& ans,vector<int>& currPath)
+{
+    if(root!=NULL && root->left==NULL && root->right==NULL)
+    {
+        currPath.push_back(root->data);
+        ans.push_back(currPath);
+        currPath.pop_back();
+        return;
+    }
+    if(root==NULL)
+        return;
+    currPath.push_back(root->data);
+    findAllPathsToLeafNodes(root->left,ans,currPath);
+    findAllPathsToLeafNodes(root->right,ans,currPath);
+    currPath.pop_back();
+}
 int main()
 {
 	return 0;
