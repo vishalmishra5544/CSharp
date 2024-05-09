@@ -426,6 +426,13 @@ void findAllPathsToLeafNodes(Node* root,vector<vector<int>>& ans,vector<int>& cu
     findAllPathsToLeafNodes(root->right,ans,currPath);
     currPath.pop_back();
 }
+//https://www.geeksforgeeks.org/problems/divisor-game-1664432414/1
+bool divisorGame(int n) {
+        // code here
+        if(n>=2 && n%2==0)
+         return true;
+        else return false;
+    }
 int main()
 {
 	return 0;
