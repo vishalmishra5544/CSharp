@@ -98,6 +98,43 @@ void DjskstrasAlgo(int src, unordered_map<int, list<pair<int,int>>>& adj, vector
         
         return ans;
     }
+//https://www.geeksforgeeks.org/problems/number-of-good-components--170647/1
+void dfs(int n,vector<int>adj[],vector<bool>&vi,unordered_set<int>&st){
+        vi[n]=true;
+        st.insert(n);
+        for(int i:adj[n]){
+            if(!vi[i]){
+                dfs(i,adj,vi,st);
+            }
+        }
+    }
+    int findNumberOfGoodComponent(int e, int v, vector<vector<int>> &edges) {
+        vector<int>adj[v+1];
+        for(auto i:edges){
+            int u=i[0];
+            int v=i[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        int c=0;
+        vector<bool> visited(v+1,0);
+        for(int i=1;i<=v;i++){
+            if(!visited[i]){
+                unordered_set<int>st;
+                dfs(i,adj,visited,st);
+                bool isGoodComponent=1;
+                for(int n:st){
+                    if(adj[n].size()!=st.size()-1){
+                        isGoodComponent=0;
+                        break;
+                    }
+                }
+                if(isGoodComponent)c++;
+            }
+        }
+
+        return c;
+    }
 int main()
 {
     return 0;
