@@ -645,6 +645,20 @@ struct Node* arrangeCV(Node* head) {
             h=h->next;
         }
     }
+//https://www.geeksforgeeks.org/problems/delete-alternate-nodes/1?page=4&difficulty=Basic&sortBy=submissions
+void deleteAlt(struct Node *head){
+        if(!head)
+          return;
+        Node*h=head,*t=NULL;
+        while(h&&h->next!=NULL)
+        {
+            t=h->next;
+            h->next=t->next;
+            delete t;
+            h=h->next;
+        }
+        
+    }
 int main()
 {
     return 0;
