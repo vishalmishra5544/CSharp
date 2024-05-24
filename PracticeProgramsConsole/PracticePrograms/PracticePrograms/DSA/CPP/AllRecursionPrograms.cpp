@@ -219,6 +219,38 @@ vector<vector<int>> CombinationSum2(vector<int> arr, int n, int k)
     solve(arr, k, 0, temp);
     return ans;
 }
+
+//https://www.geeksforgeeks.org/problems/partitions-with-given-difference/1
+const int mod = 1e9+7;
+    int countPartitions(int n, int d, vector<int>& arr) {
+        int sum=0;
+        for(auto &e:arr)
+          sum+=e;
+        if((sum-d)%2==1)
+          return 0;
+        int half = (sum-d)/2;
+        if(half<0)
+          return 0;
+        vector<vector<int>> dp(n,vector<int> (half+1,-1));
+        return solveRecursion(half,0,n,arr,0,dp)%mod;
+    }
+    
+    int solveRecursion(int sum,int temp,int n,vector<int> &arr,int index,vector<vector<int>> &dp)
+    {
+        if(index==n||temp>sum)
+        {
+            if(sum==temp)
+              return 1;
+            return 0;
+        }
+        if(dp[index][temp]!=-1)
+          return dp[index][temp]%mod;
+        int ans=0;
+        ans+=solveRecursion(sum,temp+arr[index],n,arr,index+1,dp);
+        ans+=solveRecursion(sum,temp,n,arr,index+1,dp);
+        return dp[index][temp]=ans%mod;
+    }
+
 int main()
 {
     vector<vector<int>> mat(5,vector<int> (5,1));
