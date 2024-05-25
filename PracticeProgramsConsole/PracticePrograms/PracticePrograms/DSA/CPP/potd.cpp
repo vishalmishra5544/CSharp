@@ -41,6 +41,24 @@ int solve(int source, int step, int dest)
         // code here
         return solve(0, 0, D);
     }
+//https://www.geeksforgeeks.org/problems/you-and-your-books/1
+long long max_Books(int arr[], int n, int k) {
+       long long int maxi=0,curr=0;
+       int found=0;
+       for(int i=0;i<n;i++)
+       {
+           if(arr[i]<=k)
+           {
+               curr+=arr[i];
+           }
+           else
+           {
+               curr=0;
+           }
+           maxi=max(maxi,curr);
+       }
+       return maxi;
+    }
 int main()
 {
 	return 0;
