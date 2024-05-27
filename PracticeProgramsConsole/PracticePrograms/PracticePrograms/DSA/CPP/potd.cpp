@@ -108,6 +108,23 @@ long long max_Books(int arr[], int n, int k) {
         return c1+c2;
      
     }
+//https://www.geeksforgeeks.org/problems/longest-subsequence-such-that-difference-between-adjacents-is-one4724/1
+int helper(int n , vector<int> & a , int prev){
+        if(n == 0) return 0 ; 
+        
+        //pick 
+        int pick = 0 ; 
+        if(prev == -1 || abs(a[n-1] - prev) == 1)
+            pick = 1 + helper(n-1 , a  , a[n-1]) ; 
+        
+        //not pick
+        int notPick =  helper(n - 1 , a , prev) ;
+        
+        return max(pick , notPick) ; 
+    }
+    int longestSubseq(int n, vector<int> &a) {
+        return helper(n , a , -1) ;
+    }
 int main()
 {
 	return 0;
