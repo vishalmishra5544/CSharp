@@ -125,6 +125,15 @@ int helper(int n , vector<int> & a , int prev){
     int longestSubseq(int n, vector<int> &a) {
         return helper(n , a , -1) ;
     }
+//https://www.geeksforgeeks.org/problems/minimum-cost-to-fill-given-weight-in-a-bag1956/1
+ vector<int> dp(w + 1, INT_MAX);
+        dp[0] = 0;
+    
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j <= w; j++)
+                dp[j] = min(dp[j], cost[i] + dp[j - i - 1]); 
+    
+        return dp[w];
 int main()
 {
 	return 0;
