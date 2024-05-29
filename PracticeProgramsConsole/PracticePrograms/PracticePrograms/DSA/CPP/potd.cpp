@@ -134,6 +134,21 @@ int helper(int n , vector<int> & a , int prev){
                 dp[j] = min(dp[j], cost[i] + dp[j - i - 1]); 
     
         return dp[w];
+//https://www.geeksforgeeks.org/problems/geek-and-its-game-of-coins4043/1
+int solve(int n, int x, int y, vector<int> &dp) {
+        if(n == x || n == y || n == 1) return 1;
+        if(dp[n] != -1) return dp[n];
+        int ans = 0;
+        if(n >= x && solve(n-x, x, y, dp) == 0) ans = 1;
+        if(n >= y && solve(n-y, x, y, dp) == 0) ans = 1;
+        if(solve(n-1, x, y, dp) == 0) ans = 1;
+        return dp[n] = ans;
+    }
+    
+    int findWinner(int n, int x, int y) {
+        vector<int> dp(n+1, -1);
+        return solve(n, x, y, dp);
+    }
 int main()
 {
 	return 0;
