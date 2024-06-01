@@ -145,9 +145,34 @@ int solve(int n, int x, int y, vector<int> &dp) {
         return dp[n] = ans;
     }
     
-    int findWinner(int n, int x, int y) {
-        vector<int> dp(n+1, -1);
-        return solve(n, x, y, dp);
+int findWinner(int n, int x, int y) {
+    vector<int> dp(n+1, -1);
+    return solve(n, x, y, dp);
+}
+
+
+//https://www.geeksforgeeks.org/problems/help-nobita0532/1
+ string oddEven(string s) {
+        unordered_map<char,int> h1,h2;
+        int odd=0,even=0;
+        for(int i=0;i<s.size();i++)
+        {
+            if((s[i]-'a')%2==0)
+            {
+               h1[s[i]]++;   
+            }else
+              h2[s[i]]++;
+        }
+        for(auto &e:h1)
+          if(e.second%2!=0)
+            odd++;
+        for(auto &e:h2)
+          if(e.second%2==0)
+            even++;
+        if((odd+even)%2==0)
+          return "EVEN";
+        else
+          return "ODD";
     }
 int main()
 {
